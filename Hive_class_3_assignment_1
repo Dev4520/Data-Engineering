@@ -1,0 +1,103 @@
+# Data-Engineering
+
+1. Data set download from -> https://github.com/shashank-mishra219/Hive-Class/blob/main/sales_order_data.csv
+-> laoded data to LFS
+HC- ls /home/cloudera/shekhar
+  - sales_order_data.csv
+2. Data loaded from LFS to HDFS
+HC- hadoop fs -put /home/cloudera/shekhar/sales_data.csv /shekhar
+HC- hadoop fs -ls /shekhar
+  -  /shekhar/sales_data.csv
+3. creatig data base on hive
+HC- create database;
+HC- show databases;
+  - hive_class_assignment_1
+  
+# create table of sales_data_csv
+HC- create table sales_data_csv
+(
+ORDERNUMBER int,
+QUANTITYORDERED int,
+PRICEEACH float,
+ORDERLINENUMBER int,
+SALES float,
+STATUS string,
+QTR_ID int,
+MONTH_ID int,
+YEAR_ID int,
+PRODUCTLINE string,
+MSRP int,
+PRODUCTCODE string,
+PHONE string,
+CITY string,
+STATE string,
+POSTALCODE string,
+COUNTRY string,
+TERRITORY string,
+CONTACTLASTNAME string,
+CONTACTFIRSTNAME string,
+DEALSIZE string
+)
+row format delimited
+fields terminated by ','
+tblproperties("skip.header.line.count"="1");
+
+4. To load data from HDFS to hive table sales_data_csv:-
+HC- load data inpath '/shekhar/sales_data.csv' into table sales_data_csv;
+
+# To see table schema
+HC- describe sales_data_csv;.
+
+# To see table in detail:-
+HC- describe formatted sales_data_csv;
+  hdfs://quickstart.cloudera:8020/user/hive/warehouse/hive_class_assignment_1.db/sales_data_csv	
+  
+# To see table data in detail:-
+HC- select * from sales_data_csv limit 5;
+
+# To see the metadata:-
+HC- describe extended sales_data_csv;
+
+5. Create orc table in hive sales_data_orc:-
+HC- create table sales_data_orc
+(
+ORDERNUMBER int,
+QUANTITYORDERED int,
+PRICEEACH float,
+ORDERLINENUMBER int,
+SALES float,
+STATUS string,
+QTR_ID int,
+MONTH_ID int,
+YEAR_ID int,
+PRODUCTLINE string,
+MSRP int,
+PRODUCTCODE string,
+PHONE string,
+CITY string,
+STATE string,
+POSTALCODE string,
+COUNTRY string,
+TERRITORY string,
+CONTACTLASTNAME string,
+CONTACTFIRSTNAME string,
+DEALSIZE string
+)
+stoted as orc;
+
+
+4. To load data from table sales_data_csv to hive table sales_data_orc:-
+HC- insert data sales_data_orc select * from sales_data_csv;
+
+# To see table schema
+HC- describe sales_data_orc;.
+
+# To see table in detail:-
+HC- describe formatted sales_data_csv;
+  hdfs://quickstart.cloudera:8020/user/hive/warehouse/hive_class_assignment_1.db/sales_data_orc	
+  
+# To see table data in detail:-
+HC- select * from sales_data_orc limit 5;
+
+# To see the metadata:-
+HC- describe extended sales_data_orc
