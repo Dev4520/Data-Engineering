@@ -101,3 +101,24 @@ HC- select * from sales_data_orc limit 5;
 
 # To see the metadata:-
 HC- describe extended sales_data_orc
+
+7. Perform below menioned queries on "sales_order_orc" table :
+
+a. calculate total sales per year:-
+HC- select year_id, sum(sales) as total_sales from sales_data_orc group by year_id;
+  -  set hive.exec.reducers.bytes.per.reducer=<number>
+     In order to limit the maximum number of reducers:
+     set hive.exec.reducers.max=<number>
+     In order to set a constant number of reducers:
+     set mapreduce.job.reduces=<number>
+ 
+ - mappers: 1; reducers: 1;
+ 
+ - year_id	total_sales
+    2003	  3516979.547241211
+    2004	  4724162.593383789
+    2005	  1791486.7086791992
+
+
+
+
