@@ -139,10 +139,11 @@ Ans:- First ctrate table in hive-
     
 Ans:- load data local inpath 'file:///home/country/state' into table table_nane;
 
-
-
 Q9. Is it possible to add 100 nodes when we already have 100 nodes in Hive? If yes, how?
-        
+Ans:- Yes it is posible to add 100 noeds if there is already 100 nodes in hive because becaues of master and and slabe, which is control by master and storge is done
+     by data node and controing is done by master.
+     
+     
 
 
 
