@@ -99,8 +99,50 @@ Ans:- create data base;
      The data in these files are in the format: {id, name, e-mail, country}. Now, as we know, Hadoop performance degrades when we use lots of small files.
      So, how will you solve this problem where we want to create a single Hive table for lots of small files without degrading the performance of the system?
    
-Ans:-csv
+   
+Ans:- First ctrate table in hive-
+       create table small_csv
+      (
+      id int, 
+      name string, 
+      e-mail string, 
+      country string
+      )
+      row format delimited
+      fields terminated by ','
+      tblproperties("skip.header.line.count"="1")  # This propertis will skip the csv file header in hive table only data will be loaded from HDSF to hive table
+      # Then all small csv data can be loaded one by one after path location-
+      - load data inpath 'file loacation of csv data' into table small_csv;
+           .
+           .
+           .
+           .
+        n no of file data can be loaded in by this way in table
+        
+        # From another way also csv file can be loaded from creating external table-
+        - create table small_external_csv
+         (
+      id int, 
+      name string, 
+      e-mail string, 
+      country string
+      )
+        > row format delimited                                                                                                                    
+    > fields terminated by ','                                                                                                                
+    > location '/tmp/hive_data_class_2/';  # here multiple file location can be give in one table for data loading.
+        
+       
+       
+ Q8. LOAD DATA LOCAL INPATH ‘Home/country/state/’
+     OVERWRITE INTO TABLE address;
+    The following statement failed to execute. What can be the cause?
+    
+Ans:- load data local inpath 'file:///home/country/state' into table table_nane;
 
+
+
+Q9. Is it possible to add 100 nodes when we already have 100 nodes in Hive? If yes, how?
+        
 
 
 
