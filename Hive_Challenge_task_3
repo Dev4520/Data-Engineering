@@ -7,10 +7,19 @@
       trying to access Hive at the same time?
 Ans:- Default metastore configuration allow one client Hive excess to be open at time, if multiple clinet trying to axcess then you will get error from meatstore.
 
-Q3. Suppose, I create a table that contains details of all the transactions done by the customers: CREATE TABLE transaction_details (cust_id INT, amount FLOAT,
-    month STRING, country STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ‘,’ ;
-    Now, after inserting 50,000 records in this table, I want to know the total revenue generated for each month. But, Hive is taking too much time in processing
-    this query. How will you solve this problem and list the steps that I will be taking in order to do so?
+Q3. Suppose, I create a table that contains details of all the transactions done by the customers: 
+    CREATE TABLE transaction_details 
+    (
+    cust_id INT,
+    amount FLOAT,
+    month STRING,
+    country STRING
+    ) 
+    ROW FORMAT DELIMITED
+    FIELDS TERMINATED BY ‘,’;
+    Now, after inserting 50,000 records in this table, I want to know the total revenue generated for each month.
+    But, Hive is taking too much time in processing this query. 
+    How will you solve this problem and list the steps that I will be taking in order to do so?
 Ans:-
 
 
