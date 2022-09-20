@@ -99,7 +99,7 @@ Ans:- create data base;
      The data in these files are in the format: {id, name, e-mail, country}. Now, as we know, Hadoop performance degrades when we use lots of small files.
      So, how will you solve this problem where we want to create a single Hive table for lots of small files without degrading the performance of the system?
    
-Ans:-
+Ans:-csv
 
 
 
