@@ -32,6 +32,15 @@ Ans:- we will create orc table with same schema of transaction_detail table
     stored as orc;
     
     orc is will push-down,compression and imporeve the performance of the query
+    
+    
+    
+    
+    
+    
+    
+    
+    
     - use <database name>;
     - set hive.cli.print.header=true;
     - selecty month, sum(amount) as total_revenue from transaction_table_orc;
@@ -315,6 +324,64 @@ Q10. Hive Practical questions:
          105	           2019-07-18	     7	                     900
          106	           2015-11-09	     8	                     110
 
-      hive> SELECT c.ID, c.NAME, c.AGE, o.AMOUNT FROM CUSTOMERS c JOIN ORDERS o ON (c.ID = o.CUSTOMER_ID);
+      # Inner joint-
+      # inner joint properties-
+      - SET hive.auto.convert.join=false;
+      
+      # inner join of two tables-
+      - select customer_csv.*, order_csv.*
+       > from customer_csv join order_csv
+       > on (customer_csv.id = order_csv.customer_id);
+       
+       :- customer_csv.id	customer_csv.name	customer_csv.age	customer_csv.addres	customer_csv.salary	order_csv.oid	order_csv.date	order_csv.customer_id	order_csv.salary
+           1	Devanshu	23	Bihar	   10000	 101	 2021-03-15	 1	 133
+           2	Neeraj	  30	Kolkata	 20000	 102	 2013-08-22	 2	 155
+           3	Sanjeev	 28	MP	      50000	 103	 2023-02-13	 3	 500
+           4	Chandan	 36	Karnatka	80000	 104	 2022-03-26	 4	 800
+           
+         # Left outer join-
+         -  select customer_csv.*, order_csv.*
+           > from customer_csv left outer join order_csv
+           > on (customer_csv.id = order_csv.customer_id);
+           
+           :- customer_csv.id	customer_csv.name	customer_csv.age	customer_csv.addres	customer_csv.salary	order_csv.oid	order_csv.date	order_csv.customer_id	order_csv.salary
+                1	Devanshu	23	Bihar	      10000	101	2021-03-15	  1	   133
+                2	Neeraj	  30	Kolkata	    20000	102	2013-08-22	  2	   155
+                3	Sanjeev	 28	MP	         50000	103	2023-02-13	  3	   500
+                4	Chandan	 36	Karnatka	   80000	104	2022-03-26	  4	   800
+                5	Shivam	  25	Delhi	      15000	NULL	  NULL	    NULL	 NULL
+                6	Sanjay	  26	Maharashtra	10000	NULL	  NULL	    NULL	 NULL
+                
+                
+            # Right outer join-
+            - select customer_csv.*, order_csv.*
+            > from customer_csv right outer join order_csv
+            > on (customer_csv.id = order_csv.customer_id);
+            
+            :- customer_csv.id	customer_csv.name	customer_csv.age	customer_csv.addres	customer_csv.salary	order_csv.oid	order_csv.date	order_csv.customer_id	order_csv.salary
+                1	Devanshu	23	Bihar	   10000	101	2021-03-15	1	133
+                2	Neeraj	  30	Kolkata	 20000	102	2013-08-22	2	155
+                3	Sanjeev	 28	MP	      50000	103	2023-02-13	3	500
+                4	Chandan	 36	Karnatka	80000	104	2022-03-26	4	800
+                NULL	NULL	NULL	NULL	   NULL	 105	2019-07-18	7	900
+                NULL	NULL	NULL	NULL	   NULL	 106	2015-11-09	8	110
+                
+             # Full Outer join-
+             - select customer_csv.*, order_csv.*
+             > from customer_csv full outer join order_csv
+             > on (customer_csv.id = order_csv.cudtomer_id);
+             
+             :- customer_csv.id	customer_csv.name	customer_csv.age	customer_csv.addres	customer_csv.salary	order_csv.oid	order_csv.date	order_csv.customer_id	order_csv.salary
+                  1	Devanshu	23	Bihar	      10000	101	2021-03-15	 1	  133
+                  2	Neeraj	  30	Kolkata	    20000	102	2013-08-22	 2	  155
+                  3	Sanjeev	 28	MP	         50000	103	2023-02-13	 3	  500
+                  4	Chandan	 36	Karnatka	   80000	104	2022-03-26	 4	  800
+                  5	Shivam	  25	Delhi	      15000	NULL	  NULL	   NULL	NULL
+                  6	Sanjay	  26	Maharashtra	10000	NULL	  NULL	   NULL	NULL
+                  NULL	NULL	NULL	  NULL	     NULL	105	2019-07-18	 7	  900
+                  NULL	NULL	NULL	  NULL	     NULL	106	2015-11-09	 8	  110
+
+
+
       
       
