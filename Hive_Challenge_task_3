@@ -363,8 +363,8 @@ Q10. Hive Practical questions:   Hive Join operations
         - data set downloaded and converted in csv file.
 
         1. Create a hive table as per given schema in your dataset 
-        # Data set loaded in local with help of filezila
-        :- /home/cloudera/shekhar/AirQualityUCI.csv
+        
+      
         
         # csv file copy to HDFS loaction-
         :- -rw-r--r--   1 cloudera supergroup     762451 2022-09-21 04:31 /shekhar/AirQualityUCI.csv
@@ -393,8 +393,30 @@ Q10. Hive Practical questions:   Hive Join operations
         tblproperties ("skip.header.line.count"="1");
         
         2. try to place a data into table location
+        # Data set loaded in local with help of filezila
+        :- /home/cloudera/shekhar/AirQualityUCI.csv
+        
         3. Perform a select operation . 
+        -select * from airqualityuci_csv limit 10;
+        
+        :- airqualityuci_csv.date	airqualityuci_csv.time	airqualityuci_csv.co	airqualityuci_csv.pt08_s1	airqualityuci_csv.nmhc	airqualityuci_csv.c6h6	
+        airqualityuci_csv.pt08_s2	airqualityuci_csv.nox	airqualityuci_csv.pt08_s3	airqualityuci_csv.no2	airqualityuci_csv.pt08_s4	airqualityuci_csv.pt08_s5
+        airqualityuci_csv.t	airqualityuci_csv.rh	airqualityuci_csv.ah
+           10-03-04	18:00:00	2.6	1360	150	11.9	1046	166	1056	113	1692	1268	13.6	48.9	0.7578
+           10-03-04	19:00:00	2.0	1292	112	9.4	955	103	1174	92	1559	972	13.3	47.7	0.7255
+           10-03-04	20:00:00	2.2	1402	88	 9.0	939	131	1140	114	1555	1074	11.9	54.0	0.7502
+           10-03-04	21:00:00	2.2	1376	80	 9.2	948	172	1092	122	1584	1203	11.0	60.0	0.7867
+           10-03-04	22:00:00	1.6	1272	51	 6.5	836	131	1205	116	1490	1110	11.2	59.6	0.7888
+           10-03-04	23:00:00	1.2	1197	38	 4.7	750	89	 1337	96	1393	949	11.2	59.2	0.7848
+           11-03-04	0:00:00	 1.2	1185	31	 3.6	690	62	 1462	77	1333	733	11.3	56.8	0.7603
+           11-03-04	1:00:00	 1.0	1136	31	 3.3	672	62	 1453	76	1333	730	10.7	60.0	0.7702
+           11-03-04	2:00:00	 0.9	1094	24	 2.3	609	45	 1579	60	1276	620	10.7	59.7	0.7648
+           11-03-04	3:00:00	 0.6	1010	19	 1.7	561 -200	1705	-200	1235	501	10.3	60.2	0.7517
+        
         4. Fetch the result of the select operation in your local as a csv file . 
+        - describe formatted airqualityuci_csv;
+        :- Location:- hdfs://quickstart.cloudera:8020/user/hive/warehouse/hive_challenge_task3.db/airqualityuci_csv
+        
         5. Perform group by operation . 
         7. Perform filter operation at least 5 kinds of filter examples . 
         8. show and example of regex operation
