@@ -177,9 +177,22 @@ Q10. Hive Practical questions:
      17. union operation you have to perform . 
      18. table view operation you have to perform . 
 
- Ans:-
+ Ans:- # create csv data file in local-
+       - cat customer.csv
+       1,Devanshu,23,Bihar,10000
+       2,Neeraj,30,Kolkata,20000
+       3,Sanjeev,28,MP,50000
+       4,Chandan,36,Karnatka,80000
+       5,Shivam,25,Delhi,15000
+       6,Sanjay,26,Maharashtra,10000
+       
+       # load to HDFS location
+       :- /shekhar/customer.csv
+       
       # create new data base-
       - create database hive_challenge_task3;
+      - use hive_challenge_task3;
+      
       # create table-
       - Create a  table CUSTOMERS
       (
@@ -192,13 +205,52 @@ Q10. Hive Practical questions:
       row format delimited
       fields terminated by ',';
       
+      # load data to hive table-
+      - load data local inpath 'file:///home/cloudera/shekahr/customer.csv' into table customer_csv;
+      - set hive.cli.print.header=true;
+      - describe customer_csv;
+      
+      # To see table schema detail-
+      - describe formatted customer_csv;
+      :- hdfs://quickstart.cloudera:8020/user/hive/warehouse/hive_challenge_task3.db/customer_csv	
+      
+      # To see table metadata detail-
+      - describe extended customer_csv;
+      
+      # to see table data-
+      - select * from custoemr_csv;
+      customer_csv.id	customer_csv.name	customer_csv.age	customer_csv.addres	customer_csv.salary
+      :- 1	             Devanshu	           23	           Bihar	                   10000
+         2	             Neeraj	             30	           Kolkata	                 20000
+         3	             Sanjeev	            28	           MP	                      50000
+         4	             Chandan	            36	           Karnatka	                80000
+         5	             Shivam	             25	           Delhi	                   15000
+         6	             Sanjay	             26	           Maharashtra	             10000
+
+      
       # create second table 
       - Create a Second  table ORDER
       (
       OID int,
-      DATE int,
+      DATE timestamp,
       CUSTOMER_ID int,
       AMOUNT int
       )
       row format delimited
       fields terminated by ',';
+      
+       # load data to hive table-
+      - load data local inpath 'file:///home/cloudera/shekahr/customer.csv' into table order_csv;
+      - set hive.cli.print.header=true;
+      - describe order_csv;
+      
+      # To see table schema detail-
+      - describe formatted order_csv;
+      
+      # To see table metadata detail-
+      - describe extended customer_csv;
+      
+      
+      
+      
+      
