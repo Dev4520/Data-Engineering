@@ -360,8 +360,38 @@ Q10. Hive Practical questions:   Hive Join operations
 
         Download a data from the given location - 
         https://archive.ics.uci.edu/ml/machine-learning-databases/00360/
+        - data set downloaded and converted in csv file.
 
         1. Create a hive table as per given schema in your dataset 
+        # Data set loaded in local with help of filezila
+        :- /home/cloudera/shekhar/AirQualityUCI.csv
+        
+        # csv file copy to HDFS loaction-
+        :- -rw-r--r--   1 cloudera supergroup     762451 2022-09-21 04:31 /shekhar/AirQualityUCI.csv
+         
+         # created a table in hive-
+         - create table airqualityuci_csv
+         (
+         Date string,
+         Time string,
+         CO(GT) float,
+         PT08.S1(CO) int,
+         NMHC(GT) int,
+         C6H6(GT) float,
+         PT08.S2(NMHC) int,
+         NOx(GT) int,
+         PT08.S3(NOx) int,
+         NO2(GT) int,
+         PT08.S4(NO2) int,
+         PT08.S5(O3) int,
+         T float,
+         RH float,
+         AH float
+         )
+        row format delimited
+        fields terminated by ','
+        tblproperties ("skip.header.line.count"="1");
+        
         2. try to place a data into table location
         3. Perform a select operation . 
         4. Fetch the result of the select operation in your local as a csv file . 
