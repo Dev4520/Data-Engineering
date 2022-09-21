@@ -178,6 +178,7 @@ Q10. Hive Practical questions:
      18. table view operation you have to perform . 
 
  Ans:- # create csv data file in local-
+       - vim customer.csv
        - cat customer.csv
        1,Devanshu,23,Bihar,10000
        2,Neeraj,30,Kolkata,20000
@@ -186,10 +187,10 @@ Q10. Hive Practical questions:
        5,Shivam,25,Delhi,15000
        6,Sanjay,26,Maharashtra,10000
        
-       # load to HDFS location
+       # load csv local to HDFS location
        :- /shekhar/customer.csv
        
-      # create new data base-
+      # create new data base in hive-
       - create database hive_challenge_task3;
       - use hive_challenge_task3;
       
@@ -207,8 +208,18 @@ Q10. Hive Practical questions:
       
       # load data to hive table-
       - load data local inpath 'file:///home/cloudera/shekahr/customer.csv' into table customer_csv;
+      
+      # To print data in table-
       - set hive.cli.print.header=true;
+      
+      # To see schema datatype-
       - describe customer_csv;
+      :- col_name	      data_type	comment
+           id                  	int                 	                    
+           name                	string              	                    
+           age                 	int                 	                    
+           addres              	string              	                    
+           salary              	int
       
       # To see table schema detail-
       - describe formatted customer_csv;
@@ -216,6 +227,15 @@ Q10. Hive Practical questions:
       
       # To see table metadata detail-
       - describe extended customer_csv;
+      :- Detailed Table Information	Table(tableName:customer_csv, dbName:hive_challenge_task3, owner:cloudera, createTime:1663683701, lastAccessTime:0, retention:0, 
+      sd:StorageDescriptor(cols:[FieldSchema(name:id, type:int, comment:null), FieldSchema(name:name, type:string, comment:null), FieldSchema(name:age, type:int,
+      comment:null), FieldSchema(name:addres, type:string, comment:null), FieldSchema(name:salary, type:int, comment:null)], 
+      location:hdfs://quickstart.cloudera:8020/user/hive/warehouse/hive_challenge_task3.db/customer_csv, inputFormat:org.apache.hadoop.mapred.TextInputFormat, 
+      outputFormat:org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat, compressed:false, numBuckets:-1, serdeInfo:SerDeInfo(name:null, 
+      serializationLib:org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe, parameters:{serialization.format=,, field.delim=,}), bucketCols:[], sortCols:[], 
+      parameters:{}, skewedInfo:SkewedInfo(skewedColNames:[], skewedColValues:[], skewedColValueLocationMaps:{}), storedAsSubDirectories:false), partitionKeys:[], 
+      parameters:{numFiles=1, last_modified_by=cloudera, last_modified_time=1663683866, transient_lastDdlTime=1663686826, COLUMN_STATS_ACCURATE=true, totalSize=156,
+      numRows=0, rawDataSize=0}, viewOriginalText:null, viewExpandedText:null, tableType:MANAGED_TABLE)
       
       # to see table data-
       - select * from custoemr_csv;
@@ -227,8 +247,25 @@ Q10. Hive Practical questions:
          5	             Shivam	             25	           Delhi	                   15000
          6	             Sanjay	             26	           Maharashtra	             10000
 
+      # Make order.csv file in local-
+      - vim order.csv
       
-      # create second table 
+      # to see csv file-
+      - cat order_csv
+      :- 101,2021-03-15,1,133
+         102,2013-08-22,2,155
+         103,2023-02-13,3,500
+         104,2022-03-26,4,800
+         105,2019-07-18,7,900
+         106,2015-11-09,8,110
+      
+      # to use database-
+      - use hive_challenge_task3;
+      
+      # to print data in table
+      - set hive.print.header=true;
+      
+      ## create second table 
       - Create a Second  table ORDER
       (
       OID int,
@@ -241,16 +278,43 @@ Q10. Hive Practical questions:
       
        # load data to hive table-
       - load data local inpath 'file:///home/cloudera/shekahr/customer.csv' into table order_csv;
+      
+      # to print data in table-
       - set hive.cli.print.header=true;
+      
+      # to see table schema datatype-
       - describe order_csv;
+      :- col_name	        data_type	       comment
+         oid                 	int                 	                    
+         date                	timestamp              	                    
+         cunstomer_id        	int                 	                    
+         salary              	int
       
       # To see table schema detail-
       - describe formatted order_csv;
+      :- hdfs://quickstart.cloudera:8020/user/hive/warehouse/hive_challenge_task3.db/order_csv
       
       # To see table metadata detail-
       - describe extended customer_csv;
+      :- Detailed Table Information	Table(tableName:order_csv, dbName:hive_challenge_task3, owner:cloudera, createTime:1663739314, lastAccessTime:0, retention:0, 
+      sd:StorageDescriptor(cols:[FieldSchema(name:oid, type:int, comment:null), FieldSchema(name:date, type:string, comment:null), FieldSchema(name:cunstomer_id, 
+      type:int, comment:null), FieldSchema(name:salary, type:int, comment:null)], location:hdfs://quickstart.cloudera:8020/user/hive/warehouse/hive_challenge_task3.db/order_csv, 
+      inputFormat:org.apache.hadoop.mapred.TextInputFormat, outputFormat:org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat, compressed:false, numBuckets:-1, 
+      serdeInfo:SerDeInfo(name:null, serializationLib:org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe, parameters:{serialization.format=,, field.delim=,}), 
+      bucketCols:[], sortCols:[], parameters:{}, skewedInfo:SkewedInfo(skewedColNames:[], skewedColValues:[], skewedColValueLocationMaps:{}), storedAsSubDirectories:false),
+      partitionKeys:[], parameters:{numFiles=1, last_modified_by=cloudera, last_modified_time=1663744784, transient_lastDdlTime=1663744784, COLUMN_STATS_ACCURATE=true,
+      totalSize=126, numRows=0, rawDataSize=0}, viewOriginalText:null, viewExpandedText:null, tableType:MANAGED_TABLE)
       
-      
+      # See data with schema-
+      - select * from order_csv;
+      :-order_csv.oid	order_csv.date	order_csv.cunstomer_id	order_csv.salary
+         101	           2021-03-15	     1	                     133
+         102	           2013-08-22	     2	                     155
+         103	           2023-02-13	     3	                     500
+         104	           2022-03-26	     4	                     800
+         105	           2019-07-18	     7	                     900
+         106	           2015-11-09	     8	                     110
+
       
       
       
