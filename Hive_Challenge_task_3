@@ -492,7 +492,7 @@ Q10. Hive Practical questions:   Hive Join operations
         8. show and example of regex operation
         
         9. alter table operation 
-        - created a table-
+        - created a table then alter opertion will be perform-
         -hive> create table airpollution_csv
         > (
         > Date string,
@@ -523,17 +523,50 @@ Q10. Hive Practical questions:   Hive Join operations
           Time taken: 0.944 seconds
         
         10 . drop table operation
-        - hive> drop table airpollution;
+        - drop table airpollution;
          OK
          Time taken: 0.264 seconds
         
         12 . order by operation . 
-        - 
+        - select date,rh from airqualityuci_csv order by rh;
+	:- date   vh
+	24-02-05	85.3
+	03-12-04	85.3
+	22-02-05	85.4
+	25-11-04	85.4
+	03-12-04	85.5
+	09-11-04	85.6
+	04-12-04	85.7
+	25-11-04	85.7
+	09-11-04	85.7
+	10-11-04	86.0
+	29-10-04	86.5
+	04-12-04	86.5
+	22-02-05	86.6
+	15-01-05	86.6
+	04-12-04	87.0
+	10-11-04	87.1
+	14-09-04	87.2
+	04-12-04	88.7
+	Time taken: 42.774 seconds, Fetched: 9471 row(s)
         
         13 . where clause operations you have to perform .
         
         14 . sorting operation you have to perform .
-        -
+        - select date,t from airqualityuci_csv sort by t limit 10;
+	:- date          t
+	27-06-04	42.2
+	07-07-04	42.5
+	07-07-04	42.6
+	21-07-04	42.7
+	22-07-04	42.8
+	23-07-04	42.8
+	20-07-04	42.8
+	23-07-04	43.1
+	22-07-04	43.4
+	22-07-04	44.3
+	22-07-04	44.6
+	Time taken: 45.003 seconds, Fetched: 9471 row(s)
         
         15 . distinct operation you have to perform . 
         
