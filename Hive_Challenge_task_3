@@ -638,6 +638,7 @@ Q10. Hive Practical questions:   Hive Join operations
 17 . union operation you have to perform . 
 	# create two table from airqualityuci_csv table
 	-Fiest table-
+	- create table air_pollution_csv as select date,time,co,pt08_s1,nmhc,c6h6,pt08_s2,nox from airqualityuci_csv;
 	- hive> describe air_pollution_csv;
 	OK
 	col_name	data_type	comment
@@ -650,6 +651,18 @@ Q10. Hive Practical questions:   Hive Join operations
 	pt08_s2             	int                 	                    
 	nox                 	int                 	                    
 	Time taken: 0.157 seconds, Fetched: 8 row(s)
+	
+	# create second table-
+	- create table air_quality_csv as select pt08_s3,no2,pt08_s4,pt08_s5,t,rh,ah from airqualityuci_csv;
+	- col_name	data_type	comment
+	pt08_s3             	int                 	                    
+	no2                 	int                 	                    
+	pt08_s4             	int                 	                    
+	pt08_s5             	int                 	                    
+	t                   	float               	                    
+	rh                  	float               	                    
+	ah                  	float               	                    
+	Time taken: 0.148 seconds, Fetched: 7 row(s)
 
 18 . table view operation you have to perform . 
        - hive> describe airqualityuci_csv;
