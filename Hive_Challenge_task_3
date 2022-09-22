@@ -32,15 +32,6 @@ Ans:- we will create orc table with same schema of transaction_detail table
     stored as orc;
     
     orc is will push-down,compression and imporeve the performance of the query
-    
-    
-    
-    
-    
-    
-    
-    
-    
     - use <database name>;
     - set hive.cli.print.header=true;
     - selecty month, sum(amount) as total_revenue from transaction_table_orc;
