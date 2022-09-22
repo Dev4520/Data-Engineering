@@ -637,32 +637,49 @@ Q10. Hive Practical questions:   Hive Join operations
 
 17 . union operation you have to perform . 
 	# create two table from airqualityuci_csv table
-	-Fiest table-
-	- create table air_pollution_csv as select date,time,co,pt08_s1,nmhc,c6h6,pt08_s2,nox from airqualityuci_csv;
-	- hive> describe air_pollution_csv;
+	-First table-
+	- [cloudera@quickstart shekhar]$ cat table1
+		1,Amit,Football,23
+		2,Devanshu,Cricket,24
+		3,Neeraj,Kabady,26
+		4,Deepak,Yoga,28
+
+	-hive> create table table_1
+	    > (
+	    > sr int,
+	    > name string,
+	    > work string,
+	    > age int
+	    > )
+	    > row format delimited
+	    > fields terminated by ',';
 	OK
-	col_name	data_type	comment
-	date                	string              	                    
-	time                	string              	                    
-	co                  	float               	                    
-	pt08_s1             	int                 	                    
-	nmhc                	int                 	                    
-	c6h6                	float               	                    
-	pt08_s2             	int                 	                    
-	nox                 	int                 	                    
-	Time taken: 0.157 seconds, Fetched: 8 row(s)
+	Time taken: 0.194 seconds
 	
-	# create second table-
-	- create table air_quality_csv as select pt08_s3,no2,pt08_s4,pt08_s5,t,rh,ah from airqualityuci_csv;
-	- col_name	data_type	comment
-	pt08_s3             	int                 	                    
-	no2                 	int                 	                    
-	pt08_s4             	int                 	                    
-	pt08_s5             	int                 	                    
-	t                   	float               	                    
-	rh                  	float               	                    
-	ah                  	float               	                    
-	Time taken: 0.148 seconds, Fetched: 7 row(s)
+	# from like opertion create second table
+	-create table table_2 like table_1;
+	hive> select * from table_2;
+	OK
+	1	Shivam	Dance	19
+	2	Himanshu	Hockey	28
+	3	Chandan	Engg	27
+	4	Narayan	Travelling	33
+	Time taken: 0.241 seconds, Fetched: 4 row(s)
+
+	# First and second table are join from union operation
+	- select * from table_1 union select * from table_2;
+	o/p:- 
+	1	Shivam	  Dance	        19
+	2	Himanshu  Hockey	28
+	3	Chandan	  Engg	        27
+	4	Narayan	  Travelling	33
+	1	Amit	  Football	23
+	2	Devanshu  Cricket	24
+	3	Neeraj	  Kabady	26
+	4	Deepak	  Yoga	        28
+	Time taken: 66.579 seconds, Fetched: 8 row(s)
+
+	
 
 18 . table view operation you have to perform . 
        - hive> describe airqualityuci_csv;
