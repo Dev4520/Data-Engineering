@@ -379,9 +379,7 @@ Q10. Hive Practical questions:   Hive Join operations
            13 Relative Humidity (%)
            14 AH Absolute Humidity
            
-        1. Create a hive table as per given schema in your dataset 
-        
-      
+ 1. Create a hive table as per given schema in your dataset 
         
         # csv file copy to HDFS loaction-
         :- -rw-r--r--   1 cloudera supergroup     762451 2022-09-21 04:31 /shekhar/AirQualityUCI.csv
@@ -409,11 +407,11 @@ Q10. Hive Practical questions:   Hive Join operations
         fields terminated by ','
         tblproperties ("skip.header.line.count"="1");
         
-        2. try to place a data into table location
+ 2. try to place a data into table location
         # Data set loaded in local with help of filezila
         :- /home/cloudera/shekhar/AirQualityUCI.csv
         
-        3. Perform a select operation . 
+ 3. Perform a select operation . 
         -select * from airqualityuci_csv limit 10;
         
         :- airqualityuci_csv.date	airqualityuci_csv.time	airqualityuci_csv.co	airqualityuci_csv.pt08_s1	airqualityuci_csv.nmhc	airqualityuci_csv.c6h6	
@@ -430,11 +428,11 @@ Q10. Hive Practical questions:   Hive Join operations
            11-03-04	2:00:00	 0.9	1094	24	 2.3	609	45	 1579	60	1276	620	10.7	59.7	0.7648
            11-03-04	3:00:00	 0.6	1010	19	 1.7	561 -200	1705	-200	1235	501	10.3	60.2	0.7517
         
-        4. Fetch the result of the select operation in your local as a csv file . 
+ 4. Fetch the result of the select operation in your local as a csv file . 
         - describe formatted airqualityuci_csv;
         :- Location:- hdfs://quickstart.cloudera:8020/user/hive/warehouse/hive_challenge_task3.db/airqualityuci_csv
         
-        5. Perform group by operation . 
+5. Perform group by operation . 
         - select date, sum(co) as Total_co from airqualityuci_csv group by date;
         :- date	total_co
 	              date	         total_co
@@ -487,11 +485,29 @@ Q10. Hive Practical questions:   Hive Join operations
                .
                so on....
         
-        7. Perform filter operation at least 5 kinds of filter examples . 
-        
-        8. show and example of regex operation
-        
-        9. alter table operation 
+ 7. Perform filter operation at least 5 kinds of filter examples . 
+	- select sum(rh) from airqualityuci_csv;
+	o/p:- 369464.70031929016
+	- select max(t) from airqualityuci_csv;
+	o/p:- 44.6
+	- select min(t) from airqualityuci_csv;
+	o/p:- 9.0
+        - select avg(ah) from airqualityuci_csv;
+	o/p:- 6.837603645078122
+	- select count(date) from airqualityuci_csv;
+	o/p:- 9471
+	
+ 8. show and example of regex operation
+	- describe function regexp_extract;
+	o/p:- regexp_extract(str, regexp[, idx])
+	- describe function extended regexp_extract;
+	o/p:- regexp_extract(str, regexp[, idx])
+	  > SELECT regexp_extract('100-200', '(\d+)-(\d+)', 1) FROM src LIMIT 1;
+	-  select regexp_extract("Devanshu Shekhar","(D.*)");
+	o/p:- Devanshu Shekhar
+           Time taken: 0.1 seconds, Fetched: 1 row(s) 
+	
+9. alter table operation 
         - created a table then alter opertion will be perform-
         -hive> create table airpollution_csv
         > (
@@ -522,12 +538,12 @@ Q10. Hive Practical questions:   Hive Join operations
           OK
           Time taken: 0.944 seconds
         
-        10 . drop table operation
+10 . drop table operation
         - drop table airpollution;
          OK
          Time taken: 0.264 seconds
         
-        12 . order by operation . 
+12 . order by operation . 
         - select date,rh from airqualityuci_csv order by rh;
 	:- date   vh
 	24-02-05	85.3
@@ -550,9 +566,9 @@ Q10. Hive Practical questions:   Hive Join operations
 	04-12-04	88.7
 	Time taken: 42.774 seconds, Fetched: 9471 row(s)
         
-        13 . where clause operations you have to perform .
+13 . where clause operations you have to perform .
         
-        14 . sorting operation you have to perform .
+14 . sorting operation you have to perform .
         - select date,t from airqualityuci_csv sort by t limit 10;
 	:- date          t
 	27-06-04	42.2
@@ -567,14 +583,62 @@ Q10. Hive Practical questions:   Hive Join operations
 	22-07-04	44.3
 	22-07-04	44.6
 	Time taken: 45.003 seconds, Fetched: 9471 row(s)
-        
-        15 . distinct operation you have to perform . 
-        
-        16 . like an operation you have to perform . 
-        
-        17 . union operation you have to perform . 
-        
-        18 . table view operation you have to perform . 
+	
+15 . distinct operation you have to perform . 
+	- select distinct date from airqualityuci_csv;
+	o/p:-     date
+		01-01-05
+		01-02-05
+		01-03-05
+		01-04-04
+		01-04-05
+		01-05-04
+		01-06-04
+		01-07-04
+		01-08-04
+		  ,
+		  ,
+		  ,
+		so on...
+          Time taken: 39.641 seconds, Fetched: 392 row(s)
+	
+16 . like an operation you have to perform . 
+	- hive> create table air_pollution_csv like airqualityuci_csv;
+	OK
+	Time taken: 0.56 seconds
+	
+	-hive> select * from air_pollution_csv;
+	OK
+	air_pollution_csv.date	        air_pollution_csv.time	    air_pollution_csv.co	
+	air_pollution_csv.pt08_s1	air_pollution_csv.nmhc	    air_pollution_csv.c6h6	
+	air_pollution_csv.pt08_s2	air_pollution_csv.nox	    air_pollution_csv.pt08_s3	
+	air_pollution_csv.no2	        air_pollution_csv.pt08_s4   air_pollution_csv.pt08_s5	
+	air_pollution_csv.t	        air_pollution_csv.rh	    air_pollution_csv.ah
+	Time taken: 0.097 seconds
+
+	- hive> describe air_pollution_csv;
+	OK
+	col_name	      data_type	     comment
+	date                	string              	                    
+	time                	string              	                    
+	co                  	float               	                    
+	pt08_s1             	int                 	                    
+	nmhc                	int                 	                    
+	c6h6                	float               	                    
+	pt08_s2             	int                 	                    
+	nox                 	int                 	                    
+	pt08_s3             	int                 	                    
+	no2                 	int                 	                    
+	pt08_s4             	int                 	                    
+	pt08_s5             	int                 	                    
+	t                   	float               	                    
+	rh                  	float               	                    
+	ah                  	float
+
+17 . union operation you have to perform . 
+	-
+
+18 . table view operation you have to perform . 
        - hive> describe airqualityuci_csv;
           OK
           col_name	data_type	comment
