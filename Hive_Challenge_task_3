@@ -636,7 +636,20 @@ Q10. Hive Practical questions:   Hive Join operations
 	ah                  	float
 
 17 . union operation you have to perform . 
-	-
+	# create two table from airqualityuci_csv table
+	-Fiest table-
+	- hive> describe air_pollution_csv;
+	OK
+	col_name	data_type	comment
+	date                	string              	                    
+	time                	string              	                    
+	co                  	float               	                    
+	pt08_s1             	int                 	                    
+	nmhc                	int                 	                    
+	c6h6                	float               	                    
+	pt08_s2             	int                 	                    
+	nox                 	int                 	                    
+	Time taken: 0.157 seconds, Fetched: 8 row(s)
 
 18 . table view operation you have to perform . 
        - hive> describe airqualityuci_csv;
