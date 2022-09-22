@@ -435,15 +435,129 @@ Q10. Hive Practical questions:   Hive Join operations
         :- Location:- hdfs://quickstart.cloudera:8020/user/hive/warehouse/hive_challenge_task3.db/airqualityuci_csv
         
         5. Perform group by operation . 
+        - select date, sum(co) as Total_co from airqualityuci_csv group by date;
+        :- date	total_co
+	              date	         total_co
+             01-01-05	-150.90000021457672
+             01-02-05	68.79999965429306
+             01-03-05	24.499999850988388
+             01-04-04	61.19999951124191
+             01-04-05	-174.5
+             01-05-04	-152.70000022649765
+             01-06-04	-757.9999999031425
+             01-07-04	51.900000393390656
+             01-08-04	23.600000113248825
+             01-09-04	53.70000022649765
+             01-10-04	-1151.3999998569489
+             01-11-04	-136.80000007152557
+             01-12-04	-126.20000076293945
+             02-01-05	49.09999990463257
+             02-02-05	80.40000021457672
+             02-03-05	-156.79999980330467
+             02-04-04	-135.60000032186508
+             02-04-05	20.500000178813934
+             02-05-04	-163.00000023841858
+             02-06-04	-4599.199999988079
+             02-07-04	-152.30000019073486
+              .
+              .
+              .
+              so on....
+        
+        - select no2, sum(t) as total_t from airqualityuci_csv group by no2;
+        :- no2	     total_t
+         -200	23081.799934484065
+           2	15.600000381469727
+           3	15.5
+           5	53.20000076293945
+           7	15.399999618530273
+           8	35.10000038146973
+           9	35.19999885559082
+           11	51.69999885559082
+           12	47.29999923706055
+           13	11.300000190734863
+           14	106.89999866485596
+           16	47.20000076293945
+           17	86.59999966621399
+           18	29.90000057220459
+           19	68.5
+           20	63.39999961853027
+               .
+               .
+               .
+               so on....
+        
         7. Perform filter operation at least 5 kinds of filter examples . 
+        
         8. show and example of regex operation
+        
         9. alter table operation 
+        - created a table-
+        -hive> create table airpollution_csv
+        > (
+        > Date string,
+        > Time string,
+        > CO float,
+        > PT08_S1 int,
+        > NMHC int,
+        > C6H6 float,
+        > PT08_S2 int,
+        > NOx int,
+        > PT08_S3 int,
+        > NO2 int,
+        > PT08_S4 int,
+        > PT08_S5 int,
+        > T float,
+        > RH float,
+        > AH float
+        > )
+        > row format delimited
+        > fields terminated by ','
+        > tblproperties ("skip.header.line.count"="1");
+         OK
+         Time taken: 13.495 seconds
+        
+        # alter the table name-
+        - hive> alter table airpollution_csv rename to airquality_csv;
+          OK
+          Time taken: 0.944 seconds
+        
         10 . drop table operation
+        - hive> drop table airpollution;
+         OK
+         Time taken: 0.264 seconds
+        
         12 . order by operation . 
-        13 . where clause operations you have to perform . 
-        14 . sorting operation you have to perform . 
+        - 
+        
+        13 . where clause operations you have to perform .
+        
+        14 . sorting operation you have to perform .
+        -
+        
         15 . distinct operation you have to perform . 
+        
         16 . like an operation you have to perform . 
+        
         17 . union operation you have to perform . 
+        
         18 . table view operation you have to perform . 
-      
+       - hive> describe airqualityuci_csv;
+          OK
+          col_name	data_type	comment
+          date                	string              	                    
+          time                	string              	                    
+          co                  	float               	                    
+          pt08_s1             	int                 	                    
+          nmhc                	int                 	                    
+          c6h6                	float               	                    
+          pt08_s2             	int                 	                    
+          nox                 	int                 	                    
+          pt08_s3             	int                 	                    
+          no2                 	int                 	                    
+          pt08_s4             	int                 	                    
+          pt08_s5             	int                 	                    
+          t                   	float               	                    
+          rh                  	float               	                    
+          ah                  	float 
+         Time taken: 0.159 seconds, Fetched: 15 row(s)
