@@ -588,11 +588,111 @@ Q3. List of all agents' names.
 
 
 8. Agent name who have average rating between 3.5 to 4 
-    - 
+    - select agent from agentperformance where 3.4>avg_rating<4;
+    o/p:-       shawant Kumar
+		Sandipan Saha
+		Mahak 
+		Ameya Jain
+		Mukesh Rao 
+		Zeeshan 
+		Aditya 
+		Ankitjha 
+		Saif Khan
+		Anurag Tiwari
+		Maneesh 
+		Harikrishnan Shaji
+		Ashish 
+		Prateek _iot 
+		Rohan 
+		Saikumarreddy N
+		Sudhanshu Kumar
+		Spuri 
+		Suraj S Bilgi
+		Nandani Gupta
+		Shivan_S 
+		Mahesh Sarade
+		Sowmiya Sivakumar
+		Nitin M
+		Vivek 
+		Ayushi Mishra
+		Chaitra K Hiremath
+		     ,
+		     ,
+		     ,
+		 so on.....    
+		Time taken: 0.119 seconds, Fetched: 2160 row(s)
 
 9. Agent name who have rating less than 3.5 
+      - select agent from agentperformance where avg_rating>3.5;
+      o/p:- 	Hrisikesh Neogi
+		Prerna Singh
+		Shubham Sharma
+		Jaydeep Dixit
+		Khushboo Priya
+		Boktiar Ahmed Bappy
+		Jawala Prakash
+		Manjunatha A
+		Manjunatha A
+		Jawala Prakash
+		Jayant Kumar
+		Boktiar Ahmed Bappy
+		Rishav Dash
+		Maitry 
+		Madhulika G
+		Swati 
+		Sanjeev Kumar
+		Shivan K
+		Prerna Singh
+		Shubham Sharma
+		Jaydeep Dixit
+		Shivananda Sonwane
+		Khushboo Priya
+		Hrisikesh Neogi
+		    ,
+		    ,
+		    ,
+		  so on....  
+		Time taken: 0.149 seconds, Fetched: 683 row(s)
+     
 10. Agent name who have rating more than 4.5 
+     - select agent from agentperformance where avg_rating<4.5;
+     o/p:- Ineuron Intelligence 
+		Ishawant Kumar
+		Sandipan Saha
+		Mahak 
+		Ameya Jain
+		Mukesh Rao 
+		Zeeshan 
+		Aditya 
+		Ankitjha 
+		Saif Khan
+		Anurag Tiwari
+		Maneesh 
+		Harikrishnan Shaji
+		Ashish 
+		Prateek _iot 
+		Rohan 
+		Saikumarreddy N
+		Sudhanshu Kumar
+		Spuri 
+		Suraj S Bilgi
+		Nandani Gupta
+		Shivan_S 
+		Mahesh Sarade
+		Sowmiya Sivakumar
+		Nitin M
+		Vivek 
+		Ayushi Mishra
+		Chaitra K Hiremath
+		   ,
+		   ,
+		   ,
+		 so on.....   
+		Time taken: 0.147 seconds, Fetched: 1835 row(s)
+     
 11. How many feedback agents have received more than 4.5 average
+    - 
+
 12. average weekly response time for each agent 
 13. average weekly resolution time for each agents 
 14. Find the number of chat on which they have received a feedback 
