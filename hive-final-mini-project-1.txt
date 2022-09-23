@@ -8,15 +8,7 @@ Note: both files are csv files.
 
 
 Q1. Create a schema based on the given dataset
-     # Data loaded to local with help of filezila
-     -ls
-     :- AgentLogingReport.csv  AgentPerformance.csv
-      # csv dataset loaded to LFS to HDFS 
-      - hadoop fs -put /home/cloudera/hivemini_porject/AgentLogingReport.csv /shekhar
-      - hadoop fs -put /home/cloudera/hivemini_porject/AgentPerformance.csv /shekhar
-      o/p:- /shekhar/AgentLogingReport.csv
-            /shekhar/AgentPerformance.csv
-               
+      
      # Dataset-1
     - create table AgentLogReport
     (
@@ -33,34 +25,7 @@ Q1. Create a schema based on the given dataset
     # data loaded hadoop to hive table-
     - laod data inpath '/shekhar/AgentLogingReport.csv' into table agentlogreport;
     
-    # see table detail-
-    - describe formattd agentlogreport;
-    location:- hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentlogreport
-    
-    # to see table schema detail-
-    - select agentlogreport;
-    o/p:- col_name	          data_type	comment
-          srno                	int                 	                    
-          agent               	string              	                    
-          date                	string              	                    
-          login_time          	string              	                    
-          logout_time         	string              	                    
-          duration            	string              	                    
-          Time taken: 0.382 seconds, Fetched: 6 row(s)
-    # To see table data detial-
-    - select formatted agentlogreport limit 10;
-    o/p:- agentlogreport.srno	agentlogreport.agent	agentlogreport.date	agentlogreport.login_time	agentlogreport.logout_time	agentlogreport.duration
-               1	Shivananda Sonwane	22-07-30	15:35:29	17:39:39	2:04:10
-               2	Khushboo Priya	22-07-30	15:06:59	15:07:16	0:00:17
-               3	Nandani Gupta	22-07-30	15:04:24	17:31:07	2:26:42
-               4	Hrisikesh Neogi	22-07-30	14:34:29	15:19:35	0:45:06
-               5	Mukesh	22-07-30	14:03:15	15:11:52	1:08:36
-               6	Sowmiya Sivakumar	22-07-30	14:03:11	15:05:37	1:02:26
-               7	Manjunatha A	22-07-30	14:00:12	15:08:29	1:08:16
-               8	Harikrishnan Shaji	22-07-30	13:53:05	16:06:49	2:13:43
-               9	Suraj S Bilgi	22-07-30	13:50:01	15:11:42	1:21:41
-               10	Shivan K	22-07-30	13:28:18	13:59:00	0:30:42
-               Time taken: 0.093 seconds, Fetched: 10 row(s)
+   
     
     # Dataset- 2
     - create table AgentPerformance
@@ -78,7 +43,214 @@ Q1. Create a schema based on the given dataset
     fields terminated by ','
     tblproperties("skip.header.line.count"="1");
 
-2. Dump the data inside the hdfs in the given schema location.
+Q2. Dump the data inside the hdfs in the given schema location.
+   
+   # Dataset - 1
+   
+   # Data loaded to local with help of filezila
+     -ls
+     :- AgentLogingReport.csv
+     
+     # csv dataset loaded to LFS to HDFS both dataset-
+      - hadoop fs -put /home/cloudera/hivemini_porject/AgentLogingReport.csv /shekhar
+      o/p:- /shekhar/AgentLogingReport.csv
+            
+     # see table detail-
+    - describe formattd agentlogreport;
+      location:- hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentlogreport
+    
+    # to see table schema detail-
+    - describe agentlogreport;
+    o/p:- col_name	          data_type	comment
+          srno                	int                 	                    
+          agent               	string              	                    
+          date                	string              	                    
+          login_time          	string              	                    
+          logout_time         	string              	                    
+          duration            	string              	                    
+          Time taken: 0.382 seconds, Fetched: 6 row(s)
+          
+    # To see table data detial-
+    - select formatted agentlogreport limit 10;
+    o/p:- agentlogreport.srno	agentlogreport.agent	agentlogreport.date	agentlogreport.login_time	agentlogreport.logout_time	agentlogreport.duration
+               1	Shivananda Sonwane	22-07-30	15:35:29	17:39:39	2:04:10
+               2	Khushboo Priya	22-07-30	15:06:59	15:07:16	0:00:17
+               3	Nandani Gupta	22-07-30	15:04:24	17:31:07	2:26:42
+               4	Hrisikesh Neogi	22-07-30	14:34:29	15:19:35	0:45:06
+               5	Mukesh	22-07-30	14:03:15	15:11:52	1:08:36
+               6	Sowmiya Sivakumar	22-07-30	14:03:11	15:05:37	1:02:26
+               7	Manjunatha A	22-07-30	14:00:12	15:08:29	1:08:16
+               8	Harikrishnan Shaji	22-07-30	13:53:05	16:06:49	2:13:43
+               9	Suraj S Bilgi	22-07-30	13:50:01	15:11:42	1:21:41
+               10	Shivan K	22-07-30	13:28:18	13:59:00	0:30:42
+               Time taken: 0.093 seconds, Fetched: 10 row(s)
+               
+       # To see metadata indetial-
+       - select extended agentlogreport;
+       o/p:- hive> describe extended agentlogreport;
+               OK
+               col_name	data_type	comment
+               srno                	int                 	                    
+               agent               	string              	                    
+               date                	string              	                    
+               login_time          	string              	                    
+               logout_time         	string              	                    
+               duration            	string              	                    
+
+ Detailed Table Information	Table(tableName:agentlogreport, dbName:miniproject, owner:cloudera, createTime:1663922872, lastAccessTime:0,      retention:0, sd:StorageDescriptor(cols:[FieldSchema(name:srno, type:int, comment:null), FieldSchema(name:agent, type:string, comment:null),                FieldSchema(name:date, type:string, comment:null), FieldSchema(name:login_time, type:string, comment:null), FieldSchema(name:logout_time, type:string,    comment:null), FieldSchema(name:duration, type:string, comment:null)],                                                  location:hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentlogreport, inputFormat:org.apache.hadoop.mapred.TextInputFormat,     outputFormat:org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat, compressed:false, numBuckets:-1, serdeInfo:SerDeInfo(name:null, serializationLib:org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe, parameters:{serialization.format=,, field.delim=,}), bucketCols:[], sortCols:[], parameters:{}, skewedInfo:SkewedInfo(skewedColNames:[], skewedColValues:[], skewedColValueLocationMaps:{}), storedAsSubDirectories:false), partitionKeys:[], parameters:{numFiles=1, transient_lastDdlTime=1663926577, skip.header.line.count=1, COLUMN_STATS_ACCURATE=true, totalSize=52907}, viewOriginalText:null, viewExpandedText:null, tableType:MANAGED_TABLE)	
+               Time taken: 0.301 seconds, Fetched: 8 row(s)
+
+          # To see number of date in table-
+          - select distinct date agentlogreport;
+          o/p:- date
+               22-07-01
+               22-07-20
+               22-07-21
+               22-07-22
+               22-07-23
+               22-07-24
+               22-07-25
+               22-07-26
+               22-07-27
+               22-07-28
+               22-07-29
+               22-07-30
+       
+       # Dataset - 2
+        # Data loaded to local with help of filezila
+          -ls
+          :- AgentPerformance.csv
+     
+          # csv dataset loaded to LFS to HDFS both dataset-
+           - hadoop fs -put /home/cloudera/hivemini_porject/AgentPerformance.csv /shekhar
+           o/p:- /shekhar/AgentPerformance.csv
+         
+         # to see table schema-
+        -describe agentperformance;
+          OK
+          col_name	data_type	comment
+          srno                	int                 	                    
+          date                	string              	                    
+          agent_name          	string              	                    
+          total_chat          	int                 	                    
+          avg_resp_time       	string              	                    
+          avg_reso_time       	string              	                    
+          avg_rating          	float               	                    
+          total_fb            	int                 	                    
+          Time taken: 0.163 seconds, Fetched: 8 row(s)   
+        
+        # To see table indetial info-
+        - describe formatted agentperformance;
+        Location:- hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperformance	
+       
+      # To see table data in detail-
+      - select * from agentperformance;
+      o/p:- agentperformance.srno	agentperformance.date	agentperformance.agent_name	agentperformance.total_chat	agentperformance.avg_resp_time	                          agentperformance.avg_reso_time	agentperformance.avg_rating	agentperformance.total_fb
+               1	7/30/2022	Prerna Singh	11	0:00:38	0:04:20	4.11	9
+               2	7/30/2022	Nandani Gupta	11	0:01:15	0:28:25	3.14	7
+               3	7/30/2022	Ameya Jain	14	0:00:30	0:11:36	4.55	11
+               4	7/30/2022	Mahesh Sarade	14	0:01:04	0:15:46	4.71	7
+               5	7/30/2022	Swati 	14	0:01:11	0:16:33	3.67	6
+               6	7/30/2022	Mukesh 	9	0:00:34	0:15:34	4.62	8
+               7	7/30/2022	Saikumarreddy N	15	0:00:31	0:11:09	5.0	12
+               8	7/30/2022	Sanjeev Kumar	12	0:00:55	0:20:43	5.0	6
+               9	7/30/2022	Shubham Sharma	13	0:01:31	0:25:10	4.38	8
+               10	7/30/2022	Nishtha Jain	20	0:00:59	0:13:31	4.12	16
+               Time taken: 0.348 seconds, Fetched: 10 row(s)
+               
+               # To see table unic charater in table-
+               - select distinct agent_name from agentperformance;
+               o/p:- OK
+                    agent_name
+                    Abhishek 
+                    Aditya 
+                    Aditya Shinde
+                    Aditya_iot 
+                    Amersh 
+                    Ameya Jain
+                    Anirudh 
+                    Ankit Sharma
+                    Ankitjha 
+                    Anurag Tiwari
+                    Aravind 
+                    Ashad Nasim
+                    Ashish 
+                    Ayushi Mishra
+                    Bharath 
+                    Boktiar Ahmed Bappy
+                    Chaitra K Hiremath
+                    Deepranjan Gupta
+                    Dibyanshu 
+                    Harikrishnan Shaji
+                    Hitesh Choudhary
+                    Hrisikesh Neogi
+                    Hyder Abbas
+                    Ineuron Intelligence 
+                    Ishawant Kumar
+                    Jawala Prakash
+                    Jayant Kumar
+                    Jaydeep Dixit
+                    Khushboo Priya
+                    Madhulika G
+                    Mahak 
+                    Mahesh Sarade
+                    Maitry 
+                    Maneesh 
+                    Manjunatha A
+                    Mithun S
+                    Mukesh 
+                    Mukesh Rao 
+                    Muskan Garg
+                    Nandani Gupta
+                    Nishtha Jain
+                    Nitin M
+                    Prabir Kumar Satapathy
+                    Prateek _iot 
+                    Prerna Singh
+                    Rishav Dash
+                    Rohan 
+                    Saif Khan
+                    Saikumarreddy N
+                    Samprit 
+                    Sandipan Saha
+                    Sanjeev Kumar
+                    Sanjeevan 
+                    Saurabh Shukla
+                    Shiva Srivastava
+                    Shivan K
+                    Shivan_S 
+                    Shivananda Sonwane
+                    Shubham Sharma
+                    Sowmiya Sivakumar
+                    Spuri 
+                    Sudhanshu Kumar
+                    Suraj S Bilgi
+                    Swati 
+                    Tarun 
+                    Uday Mishra
+                    Vasanth P
+                    Vivek 
+                    Wasim 
+                    Zeeshan 
+                    Time taken: 25.003 seconds, Fetched: 70 row(s)
+                    
+          # To see matadata of data- 
+          - describe extended agentperformance;
+          o/p:- describe extended agentperformance;
+               OK
+               col_name	data_type	comment
+               srno                	int                 	                    
+               date                	string              	                    
+               agent_name          	string              	                    
+               total_chat          	int                 	                    
+               avg_resp_time       	string              	                    
+               avg_reso_time       	string              	                    
+               avg_rating          	float               	                    
+               total_fb            	int                 	                    
+	 	 
+Detailed Table Information	Table(tableName:agentperformance, dbName:miniproject, owner:cloudera, createTime:1663924177, lastAccessTime:0, retention:0, sd:StorageDescriptor(cols:[FieldSchema(name:srno, type:int, comment:null), FieldSchema(name:date, type:string, comment:null), FieldSchema(name:agent_name, type:string, comment:null), FieldSchema(name:total_chat, type:int, comment:null), FieldSchema(name:avg_resp_time, type:string, comment:null), FieldSchema(name:avg_reso_time, type:string, comment:null), FieldSchema(name:avg_rating, type:float, comment:null), FieldSchema(name:total_fb, type:int, comment:null)], location:hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperformance, inputFormat:org.apache.hadoop.mapred.TextInputFormat, outputFormat:org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat, compressed:false, numBuckets:-1, serdeInfo:SerDeInfo(name:null, serializationLib:org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe, parameters:{serialization.format=,, field.delim=,}), bucketCols:[], sortCols:[], parameters:{}, skewedInfo:SkewedInfo(skewedColNames:[], skewedColValues:[], skewedColValueLocationMaps:{}), storedAsSubDirectories:false), partitionKeys:[], parameters:{numFiles=1, transient_lastDdlTime=1663926269, skip.header.line.count=1, COLUMN_STATS_ACCURATE=true, totalSize=109853}, viewOriginalText:null, viewExpandedText:null, tableType:MANAGED_TABLE)	
+                    Time taken: 0.443 seconds, Fetched: 10 row(s)
+            
 3. List of all agents' names. 
 4. Find out agent average rating.
 5. Total working days for each agents 
