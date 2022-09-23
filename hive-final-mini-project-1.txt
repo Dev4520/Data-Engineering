@@ -691,8 +691,33 @@ Q3. List of all agents' names.
 		Time taken: 0.147 seconds, Fetched: 1835 row(s)
      
 11. How many feedback agents have received more than 4.5 average
-    -
-    o/p:- 
+    - select agent,total_fb from agentperformance where avg_rating<4.5;
+    o/p:- 	ditya 	0
+		Ankitjha 	0
+		Saif Khan	0
+		Anurag Tiwari	0
+		Maneesh 	0
+		Harikrishnan Shaji	0
+		Ashish 	0
+		Prateek _iot 	0
+		Rohan 	0
+		Saikumarreddy N	0
+		Sudhanshu Kumar	0
+		Spuri 	0
+		Suraj S Bilgi	0
+		Nandani Gupta	0
+		Shivan_S 	0
+		Mahesh Sarade	0
+		Sowmiya Sivakumar	0
+		Nitin M	0
+		Vivek 	0
+		Ayushi Mishra	0
+		Chaitra K Hiremath	0
+		   ,
+		   ,
+		   ,
+		  so on....
+		Time taken: 0.106 seconds, Fetched: 1835 row(s)
 
 12. average weekly response time for each agent 
 13. average weekly resolution time for each agents 
