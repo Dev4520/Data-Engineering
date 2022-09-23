@@ -7,7 +7,16 @@ Download Dataset 2 - https://drive.google.com/file/d/1-JIPCZ34dyN6k9CqJa-Y8yxIGq
 Note: both files are csv files. 
 
 
-1. Create a schema based on the given dataset
+Q1. Create a schema based on the given dataset
+     # Data loaded to local with help of filezila
+     -ls
+     :- AgentLogingReport.csv  AgentPerformance.csv
+      # csv dataset loaded to LFS to HDFS 
+      - hadoop fs -put /home/cloudera/hivemini_porject/AgentLogingReport.csv /shekhar
+      - hadoop fs -put /home/cloudera/hivemini_porject/AgentPerformance.csv /shekhar
+      o/p:- /shekhar/AgentLogingReport.csv
+            /shekhar/AgentPerformance.csv
+               
      # Dataset-1
     - create table AgentLogReport
     (
@@ -21,6 +30,38 @@ Note: both files are csv files.
     row format delimited
     fields terminated by ','
     tblproperties("skip.header.line.count"="1");
+    # data loaded hadoop to hive table-
+    - laod data inpath '/shekhar/AgentLogingReport.csv' into table agentlogreport;
+    
+    # see table detail-
+    - describe formattd agentlogreport;
+    location:- hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentlogreport
+    
+    # to see table schema detail-
+    - select agentlogreport;
+    o/p:- col_name	          data_type	comment
+          srno                	int                 	                    
+          agent               	string              	                    
+          date                	string              	                    
+          login_time          	string              	                    
+          logout_time         	string              	                    
+          duration            	string              	                    
+          Time taken: 0.382 seconds, Fetched: 6 row(s)
+    # To see table data detial-
+    - select formatted agentlogreport limit 10;
+    o/p:- agentlogreport.srno	agentlogreport.agent	agentlogreport.date	agentlogreport.login_time	agentlogreport.logout_time	agentlogreport.duration
+               1	Shivananda Sonwane	22-07-30	15:35:29	17:39:39	2:04:10
+               2	Khushboo Priya	22-07-30	15:06:59	15:07:16	0:00:17
+               3	Nandani Gupta	22-07-30	15:04:24	17:31:07	2:26:42
+               4	Hrisikesh Neogi	22-07-30	14:34:29	15:19:35	0:45:06
+               5	Mukesh	22-07-30	14:03:15	15:11:52	1:08:36
+               6	Sowmiya Sivakumar	22-07-30	14:03:11	15:05:37	1:02:26
+               7	Manjunatha A	22-07-30	14:00:12	15:08:29	1:08:16
+               8	Harikrishnan Shaji	22-07-30	13:53:05	16:06:49	2:13:43
+               9	Suraj S Bilgi	22-07-30	13:50:01	15:11:42	1:21:41
+               10	Shivan K	22-07-30	13:28:18	13:59:00	0:30:42
+               Time taken: 0.093 seconds, Fetched: 10 row(s)
+    
     # Dataset- 2
     - create table AgentPerformance
     (
