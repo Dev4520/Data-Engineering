@@ -119,6 +119,34 @@ HC- select year_id, sum(sales) as total_sales from sales_data_orc group by year_
     2004	  4724162.593383789
     2005	  1791486.7086791992
 
+b. Find a product for which maximum orders were placed
+   - select orderlinenumber, max(productline) as max_order from sales_data_csv group by orderlinenumber;
+   o/p:-1	Vintage Cars
+        2	Vintage Cars
+        3	Vintage Cars
+        4	Vintage Cars
+        5	Vintage Cars
+        6	Vintage Cars
+        7	Vintage Cars
+        8	Vintage Cars
+        9	Vintage Cars
+        10	Vintage Cars
+        11	Vintage Cars
+        12	Vintage Cars
+        13	Vintage Cars
+        14	Vintage Cars
+        15	Vintage Cars
+        16	Vintage Cars
+        17	Vintage Cars
+        18	Vintage Cars
+        Time taken: 46.1 seconds, Fetched: 18 row(s)
 
+
+
+c. Calculate the total sales for each quarter
+d. In which quarter sales was minimum
+e. In which country sales was maximum and in which country sales was minimum
+f. Calculate quartelry sales for each city
+h. Find a month for each year in which maximum number of quantities were sold
 
 
