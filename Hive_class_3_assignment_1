@@ -159,7 +159,7 @@ d. In which quarter sales was minimum
           4	       12536.5
 
 e. In which country sales was maximum and in which country sales was minimum
-   - select country, max(sales) as coutry_max_sales from sales_data_csv group by country;
+   - select country, max(sales) as max_sales from sales_data_csv group by country;
    o/p:-  country     max_sale
           Australia	  9774.03
           Austria	    9240.0
@@ -284,5 +284,38 @@ f. Calculate quartelry sales for each city
 
     
 h. Find a month for each year in which maximum number of quantities were sold
+    - select year_id,month_id, max(sales) as max_sales from sales_data_csv group by year_id,month_id;
+    o/p:- year_id month_id max_sale
+          2003	     1	   5958.5
+          2003	     2	   8690.36
+          2003	     3     8257.0
+          2003	     4	   9264.86
+          2003	     5	   8284.0
+          2003	     6	   11279.2
+          2003	     7	   8331.61
+          2003	     8	   9470.94
+          2003	     9	   10993.5
+          2003	     10	   8754.69
+          2003	     11	   8892.9
+          2003	     12	   9064.89
+          2004	     1	   9534.5
+          2004	     2	   9774.03
+          2004	     3	   8378.58
+          2004	     4	   7597.3
+          2004	     5	   10606.2
+          2004	     6	   8336.94
+          2004	     7	   9169.0
+          2004	     8	   9631.0
+          2004	     9	   8411.56
+          2004	    10	   11623.7
+          2004	    11	   12536.5
+          2004	    12	   9720.0
+          2005	    1	     9240.44
+          2005	    2	     10039.6
+          2005	    3	     10066.6
+          2005	    4	     14082.8
+          2005	    5	     12001.0
+          Time taken: 42.475 seconds, Fetched: 29 row(s)
+
 
 
