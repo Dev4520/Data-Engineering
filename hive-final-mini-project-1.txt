@@ -272,10 +272,244 @@ Q2. Dump the data inside the hdfs in the given schema location.
 		COLUMN_STATS_ACCURATE=true, totalSize=109853}, viewOriginalText:null, viewExpandedText:null, tableType:MANAGED_TABLE)	
                     Time taken: 0.443 seconds, Fetched: 10 row(s)
             
-3. List of all agents' names. 
+Q3. List of all agents' names. 
+	- select agent from agentlogreport union all select agent from agentperformance;
+	o/p:- Khushboo Priya
+		Dibyanshu
+		Harikrishnan Shaji
+		Prateek _iot
+		Prerna Singh
+		Hrisikesh Neogi
+		Ineuron Intelligence
+		Dibyanshu
+		Mithun S
+		Sudhanshu Kumar
+		Wasim
+		Madhulika G
+		Harikrishnan Shaji
+		Sowmiya Sivakumar
+		Aravind
+		Manjunatha A
+		Bharath
+		Khushboo Priya
+		Nishtha Jain
+		Tarun
+		  ,
+		  ,
+		  ,
+		so no...
+		Time taken: 28.129 seconds, Fetched: 3160 row(s)
+
 4. Find out agent average rating.
+    - select agent, avg(avg_rating) as rating from agentperformance group by agent;
+    o/p:- OK
+		  agent		     rating
+		Abhishek 	0.0
+		Aditya 	0.0
+		Aditya Shinde	1.8003333409627278
+		Aditya_iot 	2.3453333377838135
+		Amersh 	0.0
+		Ameya Jain	2.21966667175293
+		Anirudh 	0.6449999968210857
+		Ankit Sharma	0.0
+		Ankitjha 	0.26666666666666666
+		Anurag Tiwari	0.18333333333333332
+		Aravind 	2.1813333511352537
+		Ashad Nasim	0.16666666666666666
+		Ashish 	0.0
+		Ayushi Mishra	3.481999969482422
+		Bharath 	2.9836666584014893
+		Boktiar Ahmed Bappy	3.567999982833862
+		Chaitra K Hiremath	0.8646666606267294
+		Deepranjan Gupta	2.886666695276896
+		Dibyanshu 	0.0
+		Harikrishnan Shaji	2.6396666526794434
+		Hitesh Choudhary	0.0
+		Hrisikesh Neogi	3.1363333304723104
+		Hyder Abbas	0.0
+		Ineuron Intelligence 	0.0
+		Ishawant Kumar	3.543333347638448
+		Jawala Prakash	3.472000018755595
+		Jayant Kumar	1.068666664759318
+		Jaydeep Dixit	3.1670000314712525
+		Khushboo Priya	3.703666663169861
+		Madhulika G	3.4986666520436605
+		Mahak 	0.1
+		Mahesh Sarade	2.4003333330154417
+		Maitry 	2.9270000139872234
+		Maneesh 	0.16666666666666666
+		Manjunatha A	3.5946666876475017
+		Mithun S	2.359000023206075
+		Mukesh 	0.3096666653951009
+		Mukesh Rao 	0.25566666523615517
+		Muskan Garg	0.712333329518636
+		Nandani Gupta	2.9236666679382326
+		Nishtha Jain	3.282333334287008
+		Nitin M	0.0
+		Prabir Kumar Satapathy	2.5103333314259846
+		Prateek _iot 	2.4383333206176756
+		Prerna Singh	3.2326666434605915
+		Rishav Dash	1.4268333355585734
+		Rohan 	0.0
+		Saif Khan	0.0
+		Saikumarreddy N	1.9803333441416422
+		Samprit 	0.0
+		Sandipan Saha	0.4289999961853027
+		Sanjeev Kumar	3.3830000241597493
+		Sanjeevan 	0.0
+		Saurabh Shukla	0.5556666692097981
+		Shiva Srivastava	0.9446666717529297
+		Shivan K	2.841333341598511
+		Shivan_S 	0.14166666666666666
+		Shivananda Sonwane	4.232666659355163
+		Shubham Sharma	3.2253333568572997
+		Sowmiya Sivakumar	1.2599999984105428
+		Spuri 	0.0
+		Sudhanshu Kumar	0.3333333333333333
+		Suraj S Bilgi	0.31200000445048015
+		Swati 	2.4236666917800904
+		Tarun 	0.05
+		Uday Mishra	0.0
+		Vasanth P	0.0
+		Vivek 	0.5006666660308838
+		Wasim 	2.400000015894572
+		Zeeshan 	2.286999988555908
+		Time taken: 28.146 seconds, Fetched: 70 row(s)
+
+
 5. Total working days for each agents 
+      - select agent, count(date) as total_work from agentlogreport group by agent;
+      o/p:- OK
+		agent	     total_work
+		Aditya Shinde	1
+		Aditya_iot	9
+		Amersh	4
+		Ameya Jain	10
+		Ankitjha	4
+		Anurag Tiwari	37
+		Aravind	10
+		Ayushi Mishra	18
+		Bharath	9
+		Boktiar Ahmed Bappy	17
+		Chaitra K Hiremath	13
+		Deepranjan Gupta	58
+		Dibyanshu	208
+		Harikrishnan Shaji	23
+		Hrisikesh Neogi	37
+		Hyder Abbas	2
+		Ineuron Intelligence	1
+		Ishawant Kumar	49
+		Jawala Prakash	16
+		Jaydeep Dixit	11
+		Khushboo Priya	18
+		Madhulika G	17
+		Mahesh Sarade	36
+		Maitry	5
+		Manjunatha A	8
+		Mithun S	14
+		Mukesh	3
+		Muskan Garg	12
+		Nandani Gupta	11
+		Nishtha Jain	18
+		Nitin M	1
+		Prabir Kumar Satapathy	26
+		Prateek _iot	17
+		Prerna Singh	18
+		Rishav Dash	12
+		Saikumarreddy N	10
+		Sanjeev Kumar	20
+		Saurabh Shukla	40
+		Shiva Srivastava	15
+		Shivan K	36
+		Shivananda Sonwane	15
+		Shubham Sharma	35
+		Sowmiya Sivakumar	24
+		Sudhanshu Kumar	11
+		Suraj S Bilgi	5
+		Swati	5
+		Tarun	1
+		Wasim	20
+		Zeeshan	10
+		Time taken: 28.79 seconds, Fetched: 49 row(s)
+
+
 6. Total query that each agent have taken 
+	- select agent, sum(total_chart) as total_quary from agentperformance group by agent;
+	o/p:- OK
+		agent	total_quary
+		Abhishek 	0
+		Aditya 	0
+		Aditya Shinde	277
+		Aditya_iot 	231
+		Amersh 	0
+		Ameya Jain	322
+		Anirudh 	81
+		Ankit Sharma	0
+		Ankitjha 	5
+		Anurag Tiwari	4
+		Aravind 	366
+		Ashad Nasim	18
+		Ashish 	0
+		Ayushi Mishra	514
+		Bharath 	369
+		Boktiar Ahmed Bappy	452
+		Chaitra K Hiremath	64
+		Deepranjan Gupta	493
+		Dibyanshu 	1
+		Harikrishnan Shaji	381
+		Hitesh Choudhary	1
+		Hrisikesh Neogi	578
+		Hyder Abbas	0
+		Ineuron Intelligence 	0
+		Ishawant Kumar	338
+		Jawala Prakash	439
+		Jayant Kumar	127
+		Jaydeep Dixit	512
+		Khushboo Priya	446
+		Madhulika G	469
+		Mahak 	7
+		Mahesh Sarade	364
+		Maitry 	542
+		Maneesh 	4
+		Manjunatha A	413
+		Mithun S	503
+		Mukesh 	19
+		Mukesh Rao 	5
+		Muskan Garg	56
+		Nandani Gupta	560
+		Nishtha Jain	373
+		Nitin M	0
+		Prabir Kumar Satapathy	299
+		Prateek _iot 	190
+		Prerna Singh	401
+		Rishav Dash	409
+		Rohan 	0
+		Saif Khan	0
+		Saikumarreddy N	364
+		Samprit 	1
+		Sandipan Saha	30
+		Sanjeev Kumar	507
+		Sanjeevan 	0
+		Saurabh Shukla	16
+		Shiva Srivastava	53
+		Shivan K	357
+		Shivan_S 	7
+		Shivananda Sonwane	441
+		Shubham Sharma	510
+		Sowmiya Sivakumar	206
+		Spuri 	0
+		Sudhanshu Kumar	2
+		Suraj S Bilgi	28
+		Swati 	524
+		Tarun 	22
+		Uday Mishra	0
+		Vasanth P	0
+		Vivek 	44
+		Wasim 	433
+		Zeeshan 	542
+		Time taken: 40.113 seconds, Fetched: 70 row(s)
+
+
 7. Total Feedback that each agent have received 
 8. Agent name who have average rating between 3.5 to 4 
 9. Agent name who have rating less than 3.5 
