@@ -141,12 +141,148 @@ b. Find a product for which maximum orders were placed
         18	Vintage Cars
         Time taken: 46.1 seconds, Fetched: 18 row(s)
 
-
-
 c. Calculate the total sales for each quarter
+   - select qtr_id, sum(sales) as total_sales from sales_data_csv group by qtr_id;
+   o/p:- qtr_id   total_sales
+          1	     2350817.726501465
+          2	     2048120.3029174805
+          3	     1758910.808959961
+          4	     3874780.010925293
+          Time taken: 38.961 seconds, Fetched: 4 row(s)
+
 d. In which quarter sales was minimum
+     - select qtr_id, max(sales) as max_sales_qtr from sales_data_csv group by qtr_id;
+    o/p:- qtr_id  max_sales_qtr
+          1	       10066.6
+          2	       14082.8
+          3	       10993.5
+          4	       12536.5
+
 e. In which country sales was maximum and in which country sales was minimum
+   - select country, max(sales) as coutry_max_sales from sales_data_csv group by country;
+   o/p:-  country     max_sale
+          Australia	  9774.03
+          Austria	    9240.0
+          Belgium	    6804.63
+          Canada	    9064.89
+          Denmark	    10468.9
+          Finland	    10606.2
+          France	    11739.7
+          Germany	    8940.96
+          Ireland	    8258.0
+          Italy	      9160.36
+          Japan	      10758.0
+          Norway	    8844.12
+          Philippines	7483.98
+          Singapore	  10993.5
+          Spain	      12001.0
+          Sweden	    7209.11
+          Switzerland	6761.6
+          UK	        11886.6
+          USA	        14082.8
+          Time taken: 45.853 seconds, Fetched: 19 row(s)
+
+         - select country, min(sales) as sales_min from sales_daa_csv group by country;
+         o/p:-  country     min_sales
+                Australia	  652.35
+                Austria	    640.05
+                Belgium	    881.4
+                Canada	    1119.93
+                Denmark	    1146.5
+                Finland	    891.03
+                France	    482.13
+                Germany	    948.99
+                Ireland	    1056.4
+                Italy	      577.6
+                Japan	      553.95
+                Norway	    1129.04
+                Philippines	1173.15
+                Singapore	  785.64
+                Spain	      683.8
+                Sweden	    1467.48
+                Switzerland	1205.04
+                UK	        710.2
+                USA	        541.14
+         
 f. Calculate quartelry sales for each city
+    - select city, sum(sales) as city_sales from sales_data_csv group by city;
+    o/p:- 
+            Aaarhus	100595.5498046875
+            Allentown	122138.13995361328
+            Barcelona	78411.86022949219
+            Bergamo	137955.7201538086
+            Bergen	111640.27990722656
+            Boras	134259.33056640625
+            Boston	154069.66052246094
+            Brickhaven	165255.19982910156
+            Bridgewater	101894.79113769531
+            Brisbane	50218.50988769531
+            Bruxelles	74972.51928710938
+            Burbank	46084.63952636719
+            Burlingame	120783.07043457031
+            Cambridge	139243.99932861328
+            Charleroi	33440.100341796875
+            Chatswood	151570.97985839844
+            Cowes	78240.83984375
+            Dublin	57756.43029785156
+            Espoo	113961.15087890625
+            Frankfurt	85171.58947753906
+            Gensve	117713.55859375
+            Glen Waverly	64591.45947265625
+            Glendale	66423.76971435547
+            Graz	52263.900146484375
+            Helsinki	111250.37878417969
+            Kobenhavn	145041.60083007812
+            Koln	100306.58020019531
+            Las Vegas	82751.07922363281
+            Lille	69052.41076660156
+            Liverpool	118008.26965332031
+            London	124823.53979492188
+            Los Angeles	48048.460205078125
+            Lule	75754.87963867188
+            Lyon	142874.25
+            Madrid	1082551.440979004
+            Makati City	94015.73046875
+            Manchester	157807.80963134766
+            Marseille	74936.14001464844
+            Melbourne	200995.41015625
+            Minato-ku	120562.74029541016
+            Montreal	74204.79052734375
+            Munich	34993.92004394531
+            NYC	560787.7692871094
+            Nantes	204304.85968017578
+            Nashua	131685.29949951172
+            New Bedford	207874.85864257812
+            New Haven	79472.0703125
+            Newark	83228.18920898438
+            North Sydney	153996.12915039062
+            Osaka	67605.0703125
+            Oslo	79224.22998046875
+            Oulu	104370.38067626953
+            Paris	268944.6802368164
+            Pasadena	104561.95928955078
+            Philadelphia	151189.13110351562
+            Reggio Emilia	142601.3309326172
+            Reims	135042.94012451172
+            Salzburg	149798.63018798828
+            San Diego	87489.23010253906
+            San Francisco	224358.6805419922
+            San Jose	160010.27026367188
+            San Rafael	654858.0581054688
+            Sevilla	54723.621154785156
+            Singapore	288488.4102783203
+            South Brisbane	59469.1201171875
+            Stavern	116599.18981933594
+            Strasbourg	80438.47985839844
+            Torino	94117.25988769531
+            Toulouse	70488.44091796875
+            Tsawassen	74634.84985351562
+            Vancouver	75238.91955566406
+            Versailles	64834.32019042969
+    White Plains	85555.98962402344
+    Time taken: 93.766 seconds, Fetched: 73 row(s)
+
+    
 h. Find a month for each year in which maximum number of quantities were sold
 
 
