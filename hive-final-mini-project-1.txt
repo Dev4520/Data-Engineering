@@ -753,6 +753,193 @@ Q3. List of all agents' names.
 12. average weekly response time for each agent 
 13. average weekly resolution time for each agents 
 14. Find the number of chat on which they have received a feedback 
+     - select count(total_chat) as feedback from agentperformance group by total_fb;
+   o/p:- 	OK
+		feedback
+		1429
+		23
+		30
+		28
+		29
+		24
+		32
+		26
+		23
+		41
+		37
+		41
+		40
+		47
+		42
+		47
+		25
+		33
+		29
+		22
+		21
+		12
+		12
+		4
+		17
+		7
+		9
+		5
+		8
+		1
+		2
+		1
+		1
+		3
+		2
+		3
+		1
+		1
+		1
+		1
+		Time taken: 28.488 seconds, Fetched: 40 row(s)
+
+
 15. Total contribution hour for each and every agents weekly basis 
 16. Perform inner join, left join and right join based on the agent column and after joining the table export that data into your local system.
+   # inner join
+	- > select agentperformance.srno,agentperformance.agent,agentlogreport.agent 
+	  > from agentperformance join agentlogreport
+	  > on (agentperformance.agent = agentlogreport.agent);
+	  
+	    o/p:- 	972	Ankit Sharma	Zeeshan
+			973	Abhishek 	Saurabh Shukla
+			974	Prerna Singh	Sanjeev Kumar
+			975	Muskan Garg	Ameya Jain
+			976	Tarun 	Mahesh Sarade
+			977	Ashad Nasim	Nandani Gupta
+			978	Aditya 	Saikumarreddy N
+			979	Amersh 	Dibyanshu
+			980	Vasanth P	Nishtha Jain
+			981	Ineuron Intelligence 	Khushboo Priya
+			982	Shubham Sharma	Dibyanshu
+			983	Sandipan Saha	Harikrishnan Shaji
+			984	Mahak 	Prateek _iot
+			985	Zeeshan 	Prerna Singh
+			986	Mukesh Rao 	Hrisikesh Neogi
+			987	Ankitjha 	Ineuron Intelligence
+			988	Saif Khan	Dibyanshu
+			989	Anurag Tiwari	Mithun S
+			990	Ashish 	Sudhanshu Kumar
+			991	Harikrishnan Shaji	Wasim
+			992	Prateek _iot 	Madhulika G
+			993	Maneesh 	Harikrishnan Shaji
+			994	Rohan 	Sowmiya Sivakumar
+			995	Spuri 	Aravind
+			996	Suraj S Bilgi	Manjunatha A
+			997	Shivan_S 	Bharath
+			998	Vivek 	Khushboo Priya
+			999	Nitin M	Nishtha Jain
+			1000	Jawala Prakash	Tarun
+			Time taken: 31.181 seconds, Fetched: 1000 row(s)
+   
+   # Left Outer join-
+      - > select p.srno,p.agent, r.agent
+    	> from agentperformance left outer join agentlogreport
+    	> on (p.srno = r.srno);
+	
+	o/p:- 	2133	Ineuron Intelligence 	NULL
+		2134	Ishawant Kumar	NULL
+		2135	Sandipan Saha	NULL
+		2136	Mahak 	NULL
+		2137	Ameya Jain	NULL
+		2138	Mukesh Rao 	NULL
+		2139	Zeeshan 	NULL
+		2140	Aditya 	NULL
+		2141	Ankitjha 	NULL
+		2142	Saif Khan	NULL
+		2143	Anurag Tiwari	NULL
+		2144	Maneesh 	NULL
+		2145	Harikrishnan Shaji	NULL
+		2146	Ashish 	NULL
+		2147	Prateek _iot 	NULL
+		2148	Rohan 	NULL
+		2149	Saikumarreddy N	NULL
+		2150	Sudhanshu Kumar	NULL
+		2151	Spuri 	NULL
+		2152	Suraj S Bilgi	NULL
+		2153	Nandani Gupta	NULL
+		2154	Shivan_S 	NULL
+		2155	Mahesh Sarade	NULL
+		2156	Sowmiya Sivakumar	NULL
+		2157	Nitin M	NULL
+		2158	Vivek 	NULL
+		2159	Ayushi Mishra	NULL
+		2160	Chaitra K Hiremath	NULL
+		Time taken: 30.242 seconds, Fetched: 2160 row(s)
+   # right outer join
+      - > select p.srno,p.agent,r.agent
+    	> from agentperformance p right outer join agentlogreport r
+    	> on (p.srno = r.srno);
+	
+	o/p:- 	972	Ankit Sharma	Zeeshan
+		973	Abhishek 	Saurabh Shukla
+		974	Prerna Singh	Sanjeev Kumar
+		975	Muskan Garg	Ameya Jain
+		976	Tarun 	Mahesh Sarade
+		977	Ashad Nasim	Nandani Gupta
+		978	Aditya 	Saikumarreddy N
+		979	Amersh 	Dibyanshu
+		980	Vasanth P	Nishtha Jain
+		981	Ineuron Intelligence 	Khushboo Priya
+		982	Shubham Sharma	Dibyanshu
+		983	Sandipan Saha	Harikrishnan Shaji
+		984	Mahak 	Prateek _iot
+		985	Zeeshan 	Prerna Singh
+		986	Mukesh Rao 	Hrisikesh Neogi
+		987	Ankitjha 	Ineuron Intelligence
+		988	Saif Khan	Dibyanshu
+		989	Anurag Tiwari	Mithun S
+		990	Ashish 	Sudhanshu Kumar
+		991	Harikrishnan Shaji	Wasim
+		992	Prateek _iot 	Madhulika G
+		993	Maneesh 	Harikrishnan Shaji
+		994	Rohan 	Sowmiya Sivakumar
+		995	Spuri 	Aravind
+		996	Suraj S Bilgi	Manjunatha A
+		997	Shivan_S 	Bharath
+		998	Vivek 	Khushboo Priya
+		999	Nitin M	Nishtha Jain
+		1000	Jawala Prakash	Tarun
+		Time taken: 30.424 seconds, Fetched: 1000 row(s)
+	
+   # full outer  join
+     - > select p.srno,p.agent, r.agent
+       > from agentperformance p full outer join agentpeformance r
+       > on (p.srno = r.srno);
+       o/p:- 	2133	Ineuron Intelligence 	NULL
+		2134	Ishawant Kumar	NULL
+		2135	Sandipan Saha	NULL
+		2136	Mahak 	NULL
+		2137	Ameya Jain	NULL
+		2138	Mukesh Rao 	NULL
+		2139	Zeeshan 	NULL
+		2140	Aditya 	NULL
+		2141	Ankitjha 	NULL
+		2142	Saif Khan	NULL
+		2143	Anurag Tiwari	NULL
+		2144	Maneesh 	NULL
+		2145	Harikrishnan Shaji	NULL
+		2146	Ashish 	NULL
+		2147	Prateek _iot 	NULL
+		2148	Rohan 	NULL
+		2149	Saikumarreddy N	NULL
+		2150	Sudhanshu Kumar	NULL
+		2151	Spuri 	NULL
+		2152	Suraj S Bilgi	NULL
+		2153	Nandani Gupta	NULL
+		2154	Shivan_S 	NULL
+		2155	Mahesh Sarade	NULL
+		2156	Sowmiya Sivakumar	NULL
+		2157	Nitin M	NULL
+		2158	Vivek 	NULL
+		2159	Ayushi Mishra	NULL
+		2160	Chaitra K Hiremath	NULL
+		Time taken: 29.4 seconds, Fetched: 2160 row(s)
+   
+
 17. Perform partitioning on top of the agent column and then on top of that perform bucketing for each partitioning.
