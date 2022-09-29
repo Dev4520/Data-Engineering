@@ -588,39 +588,95 @@ Q3. List of all agents' names.
 
 
 8. Agent name who have average rating between 3.5 to 4 
-    - select agent from agentperformance where 3.4>avg_rating<4;
-    o/p:-       shawant Kumar
-		Sandipan Saha
-		Mahak 
-		Ameya Jain
-		Mukesh Rao 
-		Zeeshan 
-		Aditya 
-		Ankitjha 
-		Saif Khan
-		Anurag Tiwari
-		Maneesh 
-		Harikrishnan Shaji
-		Ashish 
+    -  select agent from agentperformance where avg_rating>3.4 and avg_rating<4;
+    o/p:-   OK
+		agent
+		Swati 
+		Manjunatha A
 		Prateek _iot 
-		Rohan 
-		Saikumarreddy N
-		Sudhanshu Kumar
-		Spuri 
-		Suraj S Bilgi
 		Nandani Gupta
-		Shivan_S 
+		Jaydeep Dixit
 		Mahesh Sarade
+		Zeeshan 
+		Hrisikesh Neogi
 		Sowmiya Sivakumar
-		Nitin M
-		Vivek 
-		Ayushi Mishra
+		Khushboo Priya
+		Wasim 
+		Jawala Prakash
+		Nishtha Jain
+		Nandani Gupta
+		Prerna Singh
 		Chaitra K Hiremath
-		     ,
-		     ,
-		     ,
-		 so on.....    
-		Time taken: 0.119 seconds, Fetched: 2160 row(s)
+		Boktiar Ahmed Bappy
+		Muskan Garg
+		Harikrishnan Shaji
+		Wasim 
+		Deepranjan Gupta
+		Mahesh Sarade
+		Nishtha Jain
+		Shivan K
+		Madhulika G
+		Rishav Dash
+		Maitry 
+		Nishtha Jain
+		Khushboo Priya
+		Boktiar Ahmed Bappy
+		Mahesh Sarade
+		Rishav Dash
+		Mithun S
+		Jawala Prakash
+		Aditya_iot 
+		Swati 
+		Nandani Gupta
+		Madhulika G
+		Boktiar Ahmed Bappy
+		Ishawant Kumar
+		Boktiar Ahmed Bappy
+		Deepranjan Gupta
+		Deepranjan Gupta
+		Harikrishnan Shaji
+		Nandani Gupta
+		Mahesh Sarade
+		Swati 
+		Maitry 
+		Rishav Dash
+		Madhulika G
+		Ayushi Mishra
+		Shivananda Sonwane
+		Mahesh Sarade
+		Mithun S
+		Ishawant Kumar
+		Khushboo Priya
+		Aditya_iot 
+		Sandipan Saha
+		Madhulika G
+		Ayushi Mishra
+		Hrisikesh Neogi
+		Nandani Gupta
+		Harikrishnan Shaji
+		Nishtha Jain
+		Anirudh 
+		Swati 
+		Maitry 
+		Zeeshan 
+		Nishtha Jain
+		Wasim 
+		Ishawant Kumar
+		Jayant Kumar
+		Anurag Tiwari
+		Mithun S
+		Saurabh Shukla
+		Aditya_iot 
+		Maitry 
+		Shivananda Sonwane
+		Boktiar Ahmed Bappy
+		Ayushi Mishra
+		Jawala Prakash
+		Nandani Gupta
+		Aditya Shinde
+		Deepranjan Gupta
+		Time taken: 0.251 seconds, Fetched: 84 row(s) 
+    
 
 9. Agent name who have rating less than 3.5 
       - select agent from agentperformance where avg_rating>3.5;
@@ -691,33 +747,8 @@ Q3. List of all agents' names.
 		Time taken: 0.147 seconds, Fetched: 1835 row(s)
      
 11. How many feedback agents have received more than 4.5 average
-    - select agent,total_fb from agentperformance where avg_rating<4.5;
-    o/p:- 	ditya 	0
-		Ankitjha 	0
-		Saif Khan	0
-		Anurag Tiwari	0
-		Maneesh 	0
-		Harikrishnan Shaji	0
-		Ashish 	0
-		Prateek _iot 	0
-		Rohan 	0
-		Saikumarreddy N	0
-		Sudhanshu Kumar	0
-		Spuri 	0
-		Suraj S Bilgi	0
-		Nandani Gupta	0
-		Shivan_S 	0
-		Mahesh Sarade	0
-		Sowmiya Sivakumar	0
-		Nitin M	0
-		Vivek 	0
-		Ayushi Mishra	0
-		Chaitra K Hiremath	0
-		   ,
-		   ,
-		   ,
-		  so on....
-		Time taken: 0.106 seconds, Fetched: 1835 row(s)
+    - select avg(total_fb) from agentperformance where avg_rating<4.5;
+    o/p:- 3.0419618528610353 	
 
 12. average weekly response time for each agent 
 13. average weekly resolution time for each agents 
