@@ -751,7 +751,15 @@ Q3. List of all agents' names.
     o/p:- 3.0419618528610353 	
 
 12. average weekly response time for each agent 
-13. average weekly resolution time for each agents 
+    - 
+    o/p:-
+
+
+13. average weekly resolution time for each agents
+    -
+    o/p:-
+    
+
 14. Find the number of chat on which they have received a feedback 
      - select count(total_chat) as feedback from agentperformance group by total_fb;
    o/p:- 	OK
@@ -800,8 +808,13 @@ Q3. List of all agents' names.
 
 
 15. Total contribution hour for each and every agents weekly basis 
+   - 
+   o/p:- 
+
+
+
 16. Perform inner join, left join and right join based on the agent column and after joining the table export that data into your local system.
-   # inner join
+    # inner join
 	- > select agentperformance.srno,agentperformance.agent,agentlogreport.agent 
 	  > from agentperformance join agentlogreport
 	  > on (agentperformance.agent = agentlogreport.agent);
