@@ -956,3 +956,127 @@ Q3. List of all agents' names.
    
 
 17. Perform partitioning on top of the agent column and then on top of that perform bucketing for each partitioning.
+
+    # Partiotion on agentperformance
+      To see how much unique values are there in table agent columns:-
+      - select distinct agent from agentperformance;
+      p/p:- OK  
+      		agent
+		Abhishek 
+		Aditya 
+		Aditya Shinde
+		Aditya_iot 
+	          ,
+		  ,
+		  ,
+		Swati 
+		Tarun 
+		Uday Mishra
+		Vasanth P
+		Vivek 
+		Wasim 
+		Zeeshan 
+		Time taken: 26.178 seconds, Fetched: 70 row(s)
+    
+    # partitioned table create on database:-
+        > create table agentperfromance_part
+	    > (
+	    > srno int,
+	    > date string,
+	    > total_chat int,
+	    > avg_resp_time string,
+	    > avg_reso_time string,
+	    > avg_rating float,
+	    > total_fb int
+	    > )
+	    > partitioned by (agent string);
+	    	OK
+		Time taken: 8.892 seconds
+	
+      > show tables;
+      :-agentperfromance_part
+      
+      hive> desc agentperfromance_part;
+		OK
+		srno                	int                 	                    
+		date                	string              	                    
+		total_chat          	int                 	                    
+		avg_resp_time       	string              	                    
+		avg_reso_time       	string              	                    
+		avg_rating          	float               	                    
+		total_fb            	int                 	                    
+		agent               	string              	                    
+
+		# Partition Information	 	 
+		# col_name            	data_type           	comment             
+
+		agent               	string              	                    
+		Time taken: 0.292 seconds, Fetched: 13 row(s)
+		
+       # partition properties
+       hive> set hive.exec.dynamic.partition.mode=nonstrict;
+       hive> insert overwrite table agentperfromance_part partition (agent) select * from agentperformance;
+       o/p:- 	Partition miniproject.agentperfromance_part{agent=56} stats: [numFiles=1, numRows=1, totalSize=33, rawDataSize=32]
+		Partition miniproject.agentperfromance_part{agent=6} stats: [numFiles=1, numRows=32, totalSize=1048, rawDataSize=1016]
+		Partition miniproject.agentperfromance_part{agent=7} stats: [numFiles=1, numRows=26, totalSize=857, rawDataSize=831]
+		Partition miniproject.agentperfromance_part{agent=8} stats: [numFiles=1, numRows=23, totalSize=759, rawDataSize=736]
+		Partition miniproject.agentperfromance_part{agent=9} stats: [numFiles=1, numRows=41, totalSize=1358, rawDataSize=1317]
+		MapReduce Jobs Launched: 
+		Stage-Stage-1: Map: 1   Cumulative CPU: 3.45 sec   HDFS Read: 115113 HDFS Write: 72629 SUCCESS
+		Total MapReduce CPU Time Spent: 3 seconds 450 msec
+		OK
+		Time taken: 33.354 seconds
+		
+	# To see partion location
+	>desc formatted agentfromance_part;
+	o/p:- hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperfromance_part
+	
+	# to see partition file-
+	> dfs -ls hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperfromance_part;
+	o/p:- Found 40 items
+drwxrwxrwx   - cloudera supergroup          0 2022-10-06 02:29 hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperfromance_part/agent=0
+drwxrwxrwx   - cloudera supergroup          0 2022-10-06 02:29 hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperfromance_part/agent=1
+drwxrwxrwx   - cloudera supergroup          0 2022-10-06 02:29 hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperfromance_part/agent=10
+drwxrwxrwx   - cloudera supergroup          0 2022-10-06 02:29 hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperfromance_part/agent=11
+drwxrwxrwx   - cloudera supergroup          0 2022-10-06 02:29 hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperfromance_part/agent=12
+                     ,
+		     ,
+		     ,
+drwxrwxrwx   - cloudera supergroup          0 2022-10-06 02:29 hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperfromance_part/agent=39
+drwxrwxrwx   - cloudera supergroup          0 2022-10-06 02:29 hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperfromance_part/agent=4
+drwxrwxrwx   - cloudera supergroup          0 2022-10-06 02:29 hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperfromance_part/agent=40
+drwxrwxrwx   - cloudera supergroup          0 2022-10-06 02:29 hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperfromance_part/agent=5
+drwxrwxrwx   - cloudera supergroup          0 2022-10-06 02:29 hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperfromance_part/agent=52
+drwxrwxrwx   - cloudera supergroup          0 2022-10-06 02:29 hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperfromance_part/agent=56
+		     
+       # to partition table detail-
+       > select * from agentperfromance_part where agent='40';
+       > select * from agentperfromance_part where agent='20';
+       > select * from agentperfromance_part where agent='15';
+       
+       
+       # Top of the partition table bucking will be perform
+       # bucking properties-
+       > set hive.infornce.bucking=true;
+       hive> create table agentperformance_part_buck
+	    > (
+	    > srno int,
+	    > date string,
+	    > total_chat int,
+	    > avg_resp_time string,
+	    > avg_reso_time string,
+	    > avg_rating float,
+	    > total_fb int,
+	    > agent string
+	    > )
+	    > clustered by (agent string) into 4 buckets
+	    > row format delimited
+	    > fields terminated by ',';
+      
+       
+       
+       
+       
+       
+       
+    
