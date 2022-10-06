@@ -1072,10 +1072,24 @@ drwxrwxrwx   - cloudera supergroup          0 2022-10-06 02:29 hdfs://quickstart
 	    > clustered by (agent string) into 4 buckets
 	    > row format delimited
 	    > fields terminated by ',';
-      
+      		OK
+		Time taken: 0.107 seconds
+	# laod the table
+	hive> insert overwrite table agentperformance_part_buck select * from agentperfromance_part;
+	o/p:-Loading data to table miniproject.agentperformance_part_buck
+		Table miniproject.agentperformance_part_buck stats: [numFiles=1, numRows=2160, totalSize=74915, rawDataSize=72755]
+		MapReduce Jobs Launched: 
+		Stage-Stage-1: Map: 1   Cumulative CPU: 2.73 sec   HDFS Read: 91327 HDFS Write: 75014 SUCCESS
+		Total MapReduce CPU Time Spent: 2 seconds 730 msec
+		OK
+		Time taken: 25.782 seconds
        
+       # To bucket tabel location-
+       > desc formatted agentpeformance_part_buck;
+       o/p:- hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperformance_part_buck	
        
-       
+       # to see bucket in detail in hdfs-
+       > hadoop fs -ls hdfs://quickstart.cloudera:8020/user/hive/warehouse/miniproject.db/agentperformance_part_buck
        
        
        
