@@ -15,9 +15,13 @@ Note: Consider only the year 2017 for analysis and not the Fiscal year.
 
 The analysis can be divided into two parts:
  
+ # First laod data to LFS and load data to HDFS then
+   a. create database to hive
+   b. then create table with schema in hive
  ## Solution:-
  
  # create a tabe 
+ create table paking_violations_issued
  (
 summons_number int,
 plate_id string,
@@ -67,11 +71,16 @@ row format delimited
 fields terminated by ','
 tblproperties("skip.header.line.count"="1");
  
- 
+ c. ater table is created then load the table from HDFS to hive table
+ load data inpath 'file:/// into table parking_vilationes_issued;
  
 Part-I: Examine the data
 
 1.) Find the total number of tickets for the year.
+sol:-
+ 
+
+
 2.) Find out how many unique states the cars which got parking tickets came from.
 3.) Some parking tickets don’t have addresses on them, which is cause for concern. Find out how many such tickets
 there are(i.e. tickets where either "Street Code 1" or "Street Code 2" or "Street Code 3" is empty )
